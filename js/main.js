@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAudioFeedback();
     initMobileMenu();
     initPricingHoverSound();
+    initInteractiveCube();
 });
 
 /* --- 1. Scroll Reveal (Intersection Observer) --- */
@@ -178,5 +179,69 @@ function initPricingHoverSound() {
             playHoverSound();
         });
     });
+}
+
+/* --- 7. Interactive 3D Tech-Cube --- */
+function initInteractiveCube() {
+    const cube = document.querySelector('.cube-container');
+    const hero = document.getElementById('hero');
+    const ctaBtn = document.querySelector('.hero-actions .btn-primary');
+
+    if (!cube || !hero) return;
+
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let autoRotate = 0;
+
+    // Magnetic Mouse Follow
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        // Tilt towards mouse
+        targetRotateY = (x / (rect.width / 2)) * 30; // Max 30deg
+        targetRotateX = (y / (rect.height / 2)) * -30;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        targetRotateX = 0;
+        targetRotateY = 0;
+    });
+
+    // High Speed Spin on CTA Button Interactions
+    if (ctaBtn) {
+        const triggerSpin = () => {
+            cube.classList.add('cube-fast-spin');
+            // Store current rotation for the animation start
+            cube.style.setProperty('--rot-x', `${currentRotateX}deg`);
+            cube.style.setProperty('--rot-y', `${currentRotateY + autoRotate}deg`);
+            
+            setTimeout(() => {
+                cube.classList.remove('cube-fast-spin');
+            }, 600);
+        };
+
+        ctaBtn.addEventListener('mouseenter', triggerSpin);
+        ctaBtn.addEventListener('click', triggerSpin);
+    }
+
+    // Animation Loop (60 FPS)
+    function animate() {
+        if (!cube.classList.contains('cube-fast-spin')) {
+            autoRotate += 0.5; // Slow constant rotation
+
+            // Smooth Interpolation (Lerp)
+            currentRotateX += (targetRotateX - currentRotateX) * 0.1;
+            currentRotateY += (targetRotateY - currentRotateY) * 0.1;
+
+            cube.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY + autoRotate}deg)`;
+        }
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
 
