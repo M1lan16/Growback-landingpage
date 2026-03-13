@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAudioFeedback();
     initMobileMenu();
     // initPricingHoverSound(); // Disabled per user request: only button blips active
-    initInteractiveCube();
 });
 
 /* --- 1. Scroll Reveal (Intersection Observer) --- */
@@ -181,94 +180,4 @@ function initPricingHoverSound() {
     });
 }
 
-/* --- 7. Interactive 3D Tech-Cube --- */
-function initInteractiveCube() {
-    const cube = document.querySelector('.cube-container');
-    const hero = document.getElementById('hero');
-    const ctaBtn = document.querySelector('.hero-actions .btn-primary');
-    const faces = document.querySelectorAll('.face');
-
-    if (!cube || !hero) return;
-
-    let targetRotateX = 0;
-    let targetRotateY = 0;
-    let currentRotateX = 0;
-    let currentRotateY = 0;
-    let autoRotate = 0;
-    
-    // Navigation Rotation Offsets (to face the user better on hover)
-    const hoverOffsets = {
-        'front': { x: 0, y: 0 },
-        'right': { x: 0, y: -90 },
-        'back': { x: 0, y: -180 },
-        'left': { x: 0, y: -270 }
-    };
-
-
-    // Magnetic Mouse Follow & Hover Logic
-    hero.addEventListener('mousemove', (e) => {
-        const isHoveringFace = e.target.closest('.face');
-        const rect = hero.getBoundingClientRect();
-        
-        if (isHoveringFace && isHoveringFace.dataset.target) {
-            const side = isHoveringFace.classList.contains('front') ? 'front' :
-                         isHoveringFace.classList.contains('right') ? 'right' :
-                         isHoveringFace.classList.contains('back') ? 'back' : 'left';
-            
-            targetRotateX = hoverOffsets[side].x;
-            targetRotateY = hoverOffsets[side].y;
-        } else {
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            targetRotateY = (x / (rect.width / 2)) * 30;
-            targetRotateX = (y / (rect.height / 2)) * -30;
-        }
-    });
-
-    hero.addEventListener('mouseleave', () => {
-        targetRotateX = 0;
-        targetRotateY = 0;
-    });
-
-    // Navigation Click Logic
-    faces.forEach(face => {
-        face.addEventListener('click', (e) => {
-            const targetId = face.dataset.target;
-            if (targetId) {
-                const targetEl = document.querySelector(targetId);
-                if (targetEl) {
-                    targetEl.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
-    });
-
-    // High Speed Spin on CTA Button Interactions
-    if (ctaBtn) {
-        const triggerSpin = () => {
-            cube.classList.add('cube-fast-spin');
-            cube.style.setProperty('--rot-x', `${currentRotateX}deg`);
-            cube.style.setProperty('--rot-y', `${currentRotateY + autoRotate}deg`);
-            
-            setTimeout(() => {
-                cube.classList.remove('cube-fast-spin');
-            }, 600);
-        };
-        ctaBtn.addEventListener('mouseenter', triggerSpin);
-        ctaBtn.addEventListener('click', triggerSpin);
-    }
-
-    // Animation Loop (60 FPS)
-    function animate() {
-        if (!cube.classList.contains('cube-fast-spin')) {
-            autoRotate += 0.1; // Graceful exactly 1rpm rotation
-            currentRotateX += (targetRotateX - currentRotateX) * 0.1;
-            currentRotateY += (targetRotateY - currentRotateY) * 0.1;
-            cube.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY + autoRotate}deg)`;
-        }
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
 
