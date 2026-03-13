@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
     font-family: var(--font-stack);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 /* Typography & Utilities */
@@ -49,7 +51,13 @@ ul {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 2rem;
+    }
 }
 
 .text-center {
@@ -108,10 +116,14 @@ ul {
 
 .grid {
     display: grid;
-    gap: 2rem;
+    gap: 24px;
 }
 
 @media (min-width: 768px) {
+    .grid {
+        gap: 2rem;
+    }
+
     .grid-2 {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -123,7 +135,10 @@ ul {
 
 /* Base Components (Uiverse Style) */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
     padding: 14px 28px;
     font-weight: 600;
     font-size: 1rem;
@@ -132,6 +147,12 @@ ul {
     transition: all 0.3s ease;
     text-align: center;
     border: none;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+    }
 }
 
 .btn-primary {
@@ -338,8 +359,9 @@ ul {
     transition: transform 4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* The magic scroll without JS */
-.browser-card:hover .scrolling-content {
+/* The magic scroll without JS (Plus touch active state) */
+.browser-card:hover .scrolling-content,
+.browser-card.is-active .scrolling-content {
     /* Translate upwards to view the rest of the 800px mockup image. 
        Formula: - (Child Height - Parent Height) = - (800 - 350) = -450px */
     transform: translateY(-450px);
@@ -415,4 +437,47 @@ ul {
     padding: 6px 16px;
     border-radius: 20px;
     box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* Mobile Bottom Nav */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--surface-border);
+    z-index: 1000;
+    justify-content: space-around;
+    padding: 0.75rem 0.5rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+}
+
+.mobile-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    gap: 4px;
+    transition: color 0.3s;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:active {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: flex;
+    }
+
+    body {
+        padding-bottom: 80px;
+        /* Space for fixed nav */
+    }
 }

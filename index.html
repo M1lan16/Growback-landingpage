@@ -19,7 +19,7 @@
     <!-- Header / Navbar -->
     <header class="glass-header" id="main-header">
         <div class="container nav-wrapper">
-            <a href="#" class="logo">GROWBACK</a>
+            <a href="#" class="logo" translate="no">GROWBACK</a>
             <nav class="main-nav">
                 <ul class="nav-links">
                     <li><a href="#services">Leistungen</a></li>
@@ -27,7 +27,7 @@
                     <li><a href="#about">Über uns</a></li>
                 </ul>
             </nav>
-            <button class="btn btn-primary" aria-label="Kostenlose Analyse">Kostenlose Analyse</button>
+            <button class="btn btn-primary" aria-label="KOSTENLOSE ANALYSE">KOSTENLOSE ANALYSE</button>
             <button class="mobile-menu-toggle" aria-label="Menü umschalten">
                 <span></span>
                 <span></span>
@@ -41,7 +41,7 @@
         <section id="hero" class="hero-section">
             <div class="container hero-content">
                 <div class="hero-text reveal">
-                    <h1>Webseiten, die verkaufen. <br><span class="highlight">Technik, die begeistert.</span></h1>
+                    <h1>Webseiten, die verkaufen. <br><span class="highlight">Technik</span>, die begeistert.</h1>
                     <p class="subtext">Premium Webdesign für den deutschen Mittelstand. Wir bauen digitale
                         Infrastrukturen, die Ihre Marke stärken und Neukunden gewinnen.</p>
                     <div class="hero-actions">
@@ -124,6 +124,7 @@
                 <p>Einblicke in unsere Premium-Projekte.</p>
             </div>
             <div class="grid grid-3">
+                <!-- Case 1: Barber -->
                 <div class="browser-window reveal">
                     <div class="browser-header">
                         <span class="dot close"></span>
@@ -131,16 +132,28 @@
                         <span class="dot max"></span>
                     </div>
                     <div class="browser-body">
-                        <div class="scroll-img-wrap">
-                            <div class="placeholder-img"
-                                style="background: linear-gradient(135deg, #1e293b, #0f172a); min-height: 400px; display:flex; align-items:center; justify-content:center; color:#94a3b8;">
-                                Corporate Identity</div>
+                        <div class="placeholder-img"
+                            style="background: linear-gradient(135deg, #020617, #0f172a, rgba(0, 242, 255, 0.05)); height: 300px; display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-primary);">✂️</div>
+                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--clr-text);">UX-Design &amp;
+                                Terminbuchung</div>
+                            <div style="font-size: 0.85rem; margin-top: 1rem; font-family: monospace; opacity: 0.6;">[
+                                System: API_SYNC_ACTIVE ]</div>
                         </div>
                     </div>
-                    <div class="browser-footer">
-                        <h3>Corporate Identity</h3>
+                    <div class="browser-footer" style="text-align: left;">
+                        <h3
+                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
+                            Modern Barber Systems</h3>
+                        <p
+                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
+                            Automatisierte Kunden-Termine und mobiles First-Class Design.</p>
+                        <a href="cases/barber/index.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
                     </div>
                 </div>
+
+                <!-- Case 2: Clinic -->
                 <div class="browser-window reveal delay-1">
                     <div class="browser-header">
                         <span class="dot close"></span>
@@ -148,16 +161,28 @@
                         <span class="dot max"></span>
                     </div>
                     <div class="browser-body">
-                        <div class="scroll-img-wrap">
-                            <div class="placeholder-img"
-                                style="background: linear-gradient(135deg, #1e293b, #0f172a); min-height: 400px; display:flex; align-items:center; justify-content:center; color:#94a3b8;">
-                                High-Conversion Landingpages</div>
+                        <div class="placeholder-img"
+                            style="background: linear-gradient(135deg, #0f172a, #020617, rgba(0, 242, 255, 0.05)); height: 300px; display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-primary);">🧬</div>
+                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--clr-text);">DSGVO &amp;
+                                High-End Visuals</div>
+                            <div style="font-size: 0.85rem; margin-top: 1rem; font-family: monospace; opacity: 0.6;">[
+                                Security: Level_RSA_2048 ]</div>
                         </div>
                     </div>
-                    <div class="browser-footer">
-                        <h3>High-Conversion Landingpages</h3>
+                    <div class="browser-footer" style="text-align: left;">
+                        <h3
+                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
+                            Aesthetik-Klinik Portal</h3>
+                        <p
+                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
+                            Patientengewinnung durch psychologisch fundierte User-Journeys.</p>
+                        <a href="cases/clinic/index.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
                     </div>
                 </div>
+
+                <!-- Case 3: Wellness -->
                 <div class="browser-window reveal delay-2">
                     <div class="browser-header">
                         <span class="dot close"></span>
@@ -165,14 +190,24 @@
                         <span class="dot max"></span>
                     </div>
                     <div class="browser-body">
-                        <div class="scroll-img-wrap">
-                            <div class="placeholder-img"
-                                style="background: linear-gradient(135deg, #1e293b, #0f172a); min-height: 400px; display:flex; align-items:center; justify-content:center; color:#94a3b8;">
-                                System-Automatisierung</div>
+                        <div class="placeholder-img"
+                            style="background: linear-gradient(135deg, #020617, #1e293b, rgba(0, 242, 255, 0.05)); height: 300px; display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-primary);">✨</div>
+                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--clr-text);">Storytelling
+                                &amp; Automatisierung</div>
+                            <div style="font-size: 0.85rem; margin-top: 1rem; font-family: monospace; opacity: 0.6;">[
+                                Workflow: Lead_Nurture_Active ]</div>
                         </div>
                     </div>
-                    <div class="browser-footer">
-                        <h3>System-Automatisierung</h3>
+                    <div class="browser-footer" style="text-align: left;">
+                        <h3
+                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
+                            Boutique Wellness Experience</h3>
+                        <p
+                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
+                            Vom ersten Klick zur treuen Stammkundschaft.</p>
+                        <a href="cases/wellness/index.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
                     </div>
                 </div>
             </div>
@@ -186,8 +221,10 @@
             </div>
             <div class="grid grid-3 pricing-grid">
                 <div class="glass-card pricing-card reveal">
-                    <h3>Essential</h3>
-                    <div class="price">Ab 1.490€</div>
+                    <h3>Essential <span
+                            style="font-size: 0.8rem; opacity: 0.7; font-weight: normal; display: block; margin-top: 5px;">(Starter
+                            Presence)</span></h3>
+                    <div class="price">Ab 990 €</div>
                     <ul class="features">
                         <li>Premium Design</li>
                         <li>Mobile Optimierung</li>
@@ -197,8 +234,10 @@
                 </div>
                 <div class="glass-card pricing-card featured reveal delay-1">
                     <div class="glowing-badge">Most Popular</div>
-                    <h3>Business Growth</h3>
-                    <div class="price">Ab 2.990€</div>
+                    <h3>Business Growth <span
+                            style="font-size: 0.8rem; opacity: 0.7; font-weight: normal; display: block; margin-top: 5px;">(Premium
+                            Business)</span></h3>
+                    <div class="price">Ab 2.490 €</div>
                     <ul class="features">
                         <li>Alles aus Essential</li>
                         <li>High-Conversion Funnels</li>
@@ -208,7 +247,9 @@
                     <button class="btn btn-primary pricing-btn">Projekt anfragen</button>
                 </div>
                 <div class="glass-card pricing-card reveal delay-2">
-                    <h3>Enterprise Custom</h3>
+                    <h3>Enterprise <span
+                            style="font-size: 0.8rem; opacity: 0.7; font-weight: normal; display: block; margin-top: 5px;">(Custom
+                            Quote)</span></h3>
                     <div class="price">Individuell</div>
                     <ul class="features">
                         <li>Maßgeschneiderte Systeme</li>
@@ -250,7 +291,7 @@
     <footer class="main-footer">
         <div class="container footer-content">
             <div class="footer-brand">
-                <span class="logo">GROWBACK</span>
+                <span class="logo" translate="no">GROWBACK</span>
             </div>
             <div class="footer-links">
                 <a href="/impressum.html">Impressum</a>

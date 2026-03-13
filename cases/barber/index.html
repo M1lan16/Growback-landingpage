@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Case | Vintage Premium</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --clr-bg: #0a0a0a;
+            --clr-surface: #121212;
+            --clr-accent: #d4af37;
+            /* Gold */
+            --clr-text: #e0e0e0;
+            --clr-text-muted: #888888;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        /* Grainy Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--clr-bg);
+            color: var(--clr-text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-serif);
+            color: var(--clr-accent);
+            letter-spacing: -0.02em;
+        }
+
+        /* Sticky Back Button */
+        .sticky-back {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--clr-accent);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('http://googleusercontent.com/image_collection/image_retrieval/14959426094353394497_0') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--clr-text-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--clr-accent);
+            color: var(--clr-bg);
+            border: none;
+            padding: 1.25rem 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+        }
+
+        .btn-primary:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        /* Service Section */
+        .section {
+            padding: 10rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1.5rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .menu-item:hover {
+            opacity: 0.7;
+        }
+
+        .menu-info h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-info p {
+            font-size: 0.9rem;
+            color: var(--clr-text-muted);
+        }
+
+        .price {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--clr-accent);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .barber-card {
+            background: var(--clr-surface);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .barber-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .barber-img {
+            width: 15rem;
+            height: 15rem;
+            background: #222;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: #444;
+            font-size: 2rem;
+            filter: grayscale(1);
+            transition: filter 0.5s ease;
+        }
+
+        .barber-card:hover .barber-img {
+            filter: grayscale(0);
+        }
+
+        .barber-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .barber-card span {
+            color: var(--clr-text-muted);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Booking Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            display: none;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--clr-surface);
+            width: 100%;
+            max-width: 600px;
+            padding: 4rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--clr-accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .booking-step {
+            display: none;
+        }
+
+        .booking-step.active {
+            display: block;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .modal-header span {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--clr-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h3 {
+            font-size: 2.5rem;
+        }
+
+        .options-list {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .option-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--clr-text);
+            padding: 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            border-color: var(--clr-accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .option-btn .tag {
+            font-size: 0.8rem;
+            color: var(--clr-text-muted);
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--clr-text-muted);
+        }
+
+        .input-group input {
+            width: 100%;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--clr-accent);
+            padding: 1rem;
+            font-family: var(--font-sans);
+        }
+
+        .success-screen {
+            text-align: center;
+        }
+
+        .success-screen h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .success-screen p {
+            color: var(--clr-text-muted);
+        }
+
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--clr-text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer span {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--clr-accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sticky-back">
+        <a href="../../index.html#portfolio" class="btn-back click-trigger">← Zurück zu <span
+                translate="no">GROWBACK</span></a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p>Etabliert 2024</p>
+            <h1>The Art of Grooming</h1>
+            <p style="margin-top: 1rem;">Klassisches Handwerk trifft auf moderne Präzision.</p>
+            <button class="btn-primary click-trigger" id="openBooking">Termin buchen</button>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Das Menü</h2>
+            <p>Zeitlose Schnitte und meisterhafte Rasur.</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item click-trigger">
+                <div class="menu-info">
+                    <h4>The Royal Shave</h4>
+                    <p>Traditionelle Nassrasur per Hand inklusive heißer Kompressen.</p>
+                </div>
+                <div class="price">45€</div>
+            </div>
+            <div class="menu-item click-trigger">
+                <div class="menu-info">
+                    <h4>Gentleman's Cut</h4>
+                    <p>Präziser Haarschnitt inklusive Styling und Kopfmassage.</p>
+                </div>
+                <div class="price">55€</div>
+            </div>
+            <div class="menu-item click-trigger">
+                <div class="menu-info">
+                    <h4>Bartschnitt</h4>
+                    <p>Formgebung und Pflege inklusive erstklassiger Bartöle.</p>
+                </div>
+                <div class="price">30€</div>
+            </div>
+            <div class="menu-item click-trigger">
+                <div class="menu-info">
+                    <h4>Full Service</h4>
+                    <p>Haarschnitt und Rasur für das ultimative Erlebnis.</p>
+                </div>
+                <div class="price">85€</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #050505;">
+        <div class="section-header">
+            <h2>Unsere Meister</h2>
+            <p>Die Barbiere von <span translate="no">GROWBACK</span>.</p>
+        </div>
+        <div class="team-grid">
+            <div class="barber-card">
+                <div class="barber-img">H.</div>
+                <h3>Hendrik</h3>
+                <span>Master Barber</span>
+            </div>
+            <div class="barber-card">
+                <div class="barber-img">M.</div>
+                <h3>Markus</h3>
+                <span>Fade Specialist</span>
+            </div>
+            <div class="barber-card">
+                <div class="barber-img">L.</div>
+                <h3>Lukas</h3>
+                <span>Old School Expert</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tradition Section -->
+    <section class="section" style="background: var(--clr-bg); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container"
+            style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 3rem; margin-bottom: 2rem;">Die Tradition des Handwerks</h2>
+                <p style="font-size: 1.1rem; color: var(--clr-text-muted); margin-bottom: 2rem; line-height: 1.8;">
+                    Bei uns ist das Barbierhandwerk mehr als nur ein Beruf – es ist ein Erbe. Wir pflegen die
+                    traditionellen Methoden der klassischen Herrenpflege,
+                    von der präzisen Messerführung bis hin zu den wohltuenden Ritualen der heißen Kompressen. In einer
+                    schnelllebigen Welt bieten wir Ihnen einen Ort der Beständigkeit und Qualität.
+                </p>
+                <div
+                    style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; color: var(--clr-accent);">
+                    Echtes Handwerk für echte Männer.
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/13583404552388749474_3"
+                    alt="Craftsmanship"
+                    style="width: 100%; height: 500px; object-fit: cover; border-radius: 4px; box-shadow: 20px 20px 0 var(--clr-surface);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambiente Gallery -->
+    <section class="section" style="background: #050505;">
+        <div class="section-header">
+            <h2>Das Ambiente</h2>
+            <p>Ein Ort, der Geschichten erzählt.</p>
+        </div>
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; padding: 0 1rem;">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/14959426094353394497_0"
+                alt="Ambiente 1" style="width: 100%; height: 300px; object-fit: cover;">
+            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&q=80&w=800"
+                alt="Ambiente 2" style="width: 100%; height: 300px; object-fit: cover;">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/13583404552388749474_3"
+                alt="Ambiente 3" style="width: 100%; height: 300px; object-fit: cover;">
+            <img src="https://images.unsplash.com/photo-1599351473299-d8395e69f1b2?auto=format&fit=crop&q=80&w=800"
+                alt="Ambiente 4" style="width: 100%; height: 300px; object-fit: cover;">
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 <span translate="no">GROWBACK</span> Barber Concept</p>
+        <p>Herrenstraße 14, 80539 München</p>
+    </footer>
+
+    <!-- Multi-Step Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close click-trigger" id="closeModal">&times;</button>
+
+            <!-- Step 1: Service -->
+            <div class="booking-step active" id="step-1">
+                <div class="modal-header">
+                    <span>Schritt 1/3</span>
+                    <h3>Der Service</h3>
+                </div>
+                <div class="options-list">
+                    <button class="option-btn click-trigger" onclick="nextStep(1, 'The Royal Shave')">
+                        The Royal Shave <span class="tag">45€</span>
+                    </button>
+                    <button class="option-btn click-trigger" onclick="nextStep(1, 'Gentleman\'s Cut')">
+                        Gentleman's Cut <span class="tag">55€</span>
+                    </button>
+                    <button class="option-btn click-trigger" onclick="nextStep(1, 'Bartschnitt')">
+                        Bartschnitt <span class="tag">30€</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Barber -->
+            <div class="booking-step" id="step-2">
+                <div class="modal-header">
+                    <span>Schritt 2/3</span>
+                    <h3>Der Barbier</h3>
+                </div>
+                <div class="options-list">
+                    <button class="option-btn click-trigger" onclick="nextStep(2, 'Hendrik')">
+                        Hendrik <span class="tag">Master</span>
+                    </button>
+                    <button class="option-btn click-trigger" onclick="nextStep(2, 'Markus')">
+                        Markus <span class="tag">Fade</span>
+                    </button>
+                    <button class="option-btn click-trigger" onclick="nextStep(2, 'Lukas')">
+                        Lukas <span class="tag">Old School</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Date/Time -->
+            <div class="booking-step" id="step-3">
+                <div class="modal-header">
+                    <span>Schritt 3/3</span>
+                    <h3>Termin wählen</h3>
+                </div>
+                <div class="input-group">
+                    <label>Datum</label>
+                    <input type="date" value="2024-03-20">
+                </div>
+                <div class="input-group">
+                    <label>Uhrzeit</label>
+                    <input type="time" value="14:00">
+                </div>
+                <button class="btn-primary click-trigger" style="width: 100%;" onclick="finishBooking()">Termin
+                    bestätigen</button>
+            </div>
+
+            <!-- Success Screen -->
+            <div class="booking-step" id="step-success">
+                <div class="success-screen">
+                    <div style="font-size: 4rem; margin-bottom: 2rem;">✓</div>
+                    <h3>Termin gebucht</h3>
+                    <p>Ihre Reservierung für <strong id="summary-service"></strong> bei <strong
+                            id="summary-barber"></strong> wurde erfolgreich bestätigt.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Web Audio API Click Sound
+        let audioCtx = null;
+        function playClickSound() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.1);
+            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.1);
+        }
+
+        document.querySelectorAll('.click-trigger').forEach(btn => {
+            btn.addEventListener('click', playClickSound);
+        });
+
+        // Booking Modal Logic
+        const modal = document.getElementById('bookingModal');
+        const openBtn = document.getElementById('openBooking');
+        const closeBtn = document.getElementById('closeModal');
+
+        let selection = { service: '', barber: '' };
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            resetSteps();
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        function nextStep(current, choice) {
+            if (current === 1) selection.service = choice;
+            if (current === 2) selection.barber = choice;
+
+            document.getElementById(`step-${current}`).classList.remove('active');
+            document.getElementById(`step-${current + 1}`).classList.add('active');
+        }
+
+        function finishBooking() {
+            document.getElementById('step-3').classList.remove('active');
+            document.getElementById('step-success').classList.add('active');
+            document.getElementById('summary-service').textContent = selection.service;
+            document.getElementById('summary-barber').textContent = selection.barber;
+
+            setTimeout(() => {
+                modal.classList.remove('active');
+            }, 5000);
+        }
+
+        function resetSteps() {
+            document.querySelectorAll('.booking-step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step-1').classList.add('active');
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+
+</html>

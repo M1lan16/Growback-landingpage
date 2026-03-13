@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initTiltCards();
     initAudioFeedback();
-    initInactivityVoice();
     initMobileMenu();
     initPricingHoverSound();
-    initScrollToBottomSpeech();
 });
 
 /* --- 1. Scroll Reveal (Intersection Observer) --- */
@@ -120,53 +118,6 @@ function initAudioFeedback() {
     });
 }
 
-/* --- 4. Speech Synthesis (Inactivity) --- */
-function initInactivityVoice() {
-    let inactivityTimer;
-    const INACTIVITY_LIMIT_MS = 30000; // 30 seconds
-    let hasSpoken = false; // Only speak once
-
-    const resetTimer = () => {
-        if (hasSpoken) return; // Stop tracking after it triggers once
-
-        clearTimeout(inactivityTimer);
-        inactivityTimer = setTimeout(() => {
-            triggerVoiceFeedback();
-        }, INACTIVITY_LIMIT_MS);
-    };
-
-    const triggerVoiceFeedback = () => {
-        if (!('speechSynthesis' in window)) return;
-
-        hasSpoken = true;
-        const msg = new SpeechSynthesisUtterance();
-
-        // Randomize the message slightly
-        const messages = [
-            "Good boy.",
-            "Check this out.",
-            "Still there?"
-        ];
-        msg.text = messages[Math.floor(Math.random() * messages.length)];
-
-        // Try to find a pleasant English voice (or German since it's a DE site, but user requested english text)
-        msg.lang = 'en-US';
-        msg.volume = 0.5; // Subtle volume
-        msg.rate = 1.1;
-        msg.pitch = 0.9;
-
-        window.speechSynthesis.speak(msg);
-    };
-
-    // Track user activity
-    window.addEventListener('mousemove', resetTimer, { passive: true });
-    window.addEventListener('scroll', resetTimer, { passive: true });
-    window.addEventListener('keypress', resetTimer, { passive: true });
-    window.addEventListener('click', resetTimer, { passive: true });
-
-    // Initial start
-    resetTimer();
-}
 
 /* --- 5. Mobile Menu Toggle --- */
 function initMobileMenu() {
@@ -229,24 +180,3 @@ function initPricingHoverSound() {
     });
 }
 
-/* --- 7. Scroll to Bottom Speech --- */
-function initScrollToBottomSpeech() {
-    let hasSpokenBottom = false;
-
-    window.addEventListener('scroll', () => {
-        if (hasSpokenBottom) return;
-
-        // Check if user is near the bottom (within 100px)
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-            if (!('speechSynthesis' in window)) return;
-            hasSpokenBottom = true;
-
-            const msg = new SpeechSynthesisUtterance("Good boy. Let's start your project.");
-            msg.lang = 'en-US';
-            msg.volume = 0.5;
-            msg.rate = 1.0;
-            msg.pitch = 0.9;
-            window.speechSynthesis.speak(msg);
-        }
-    }, { passive: true });
-}
