@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTiltCards();
     initAudioFeedback();
     initMobileMenu();
-    initPricingHoverSound();
+    // initPricingHoverSound(); // Disabled per user request: only button blips active
     initInteractiveCube();
 });
 
@@ -187,7 +187,6 @@ function initInteractiveCube() {
     const hero = document.getElementById('hero');
     const ctaBtn = document.querySelector('.hero-actions .btn-primary');
     const faces = document.querySelectorAll('.face');
-    const tooltip = document.querySelector('.cube-tooltip');
 
     if (!cube || !hero) return;
 
@@ -205,12 +204,6 @@ function initInteractiveCube() {
         'left': { x: 0, y: -270 }
     };
 
-    const benefits = {
-        'LEISTUNGEN': 'Alles für Ihren Erfolg',
-        'PORTFOLIO': '3+ Premium Live Demos',
-        'PREISE': 'Transparente Pakete',
-        'KONTAK': 'Kostenlose Analyse' // Adjusted for face text, contact id added to cta
-    };
 
     // Magnetic Mouse Follow & Hover Logic
     hero.addEventListener('mousemove', (e) => {
@@ -222,29 +215,19 @@ function initInteractiveCube() {
                          isHoveringFace.classList.contains('right') ? 'right' :
                          isHoveringFace.classList.contains('back') ? 'back' : 'left';
             
-            // Bias rotation to face the user
             targetRotateX = hoverOffsets[side].x;
             targetRotateY = hoverOffsets[side].y;
-            
-            // Show Tooltip
-            const label = isHoveringFace.innerText;
-            if (tooltip && benefits[label]) {
-                tooltip.innerText = `${label}: ${benefits[label]}`;
-                tooltip.classList.add('active');
-            }
         } else {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
             targetRotateY = (x / (rect.width / 2)) * 30;
             targetRotateX = (y / (rect.height / 2)) * -30;
-            if (tooltip) tooltip.classList.remove('active');
         }
     });
 
     hero.addEventListener('mouseleave', () => {
         targetRotateX = 0;
         targetRotateY = 0;
-        if (tooltip) tooltip.classList.remove('active');
     });
 
     // Navigation Click Logic
@@ -278,7 +261,7 @@ function initInteractiveCube() {
     // Animation Loop (60 FPS)
     function animate() {
         if (!cube.classList.contains('cube-fast-spin')) {
-            autoRotate += 0.5;
+            autoRotate += 0.1; // Graceful exactly 1rpm rotation
             currentRotateX += (targetRotateX - currentRotateX) * 0.1;
             currentRotateY += (targetRotateY - currentRotateY) * 0.1;
             cube.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY + autoRotate}deg)`;
