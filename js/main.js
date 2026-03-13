@@ -186,6 +186,8 @@ function initInteractiveCube() {
     const cube = document.querySelector('.cube-container');
     const hero = document.getElementById('hero');
     const ctaBtn = document.querySelector('.hero-actions .btn-primary');
+    const faces = document.querySelectorAll('.face');
+    const tooltip = document.querySelector('.cube-tooltip');
 
     if (!cube || !hero) return;
 
@@ -194,28 +196,74 @@ function initInteractiveCube() {
     let currentRotateX = 0;
     let currentRotateY = 0;
     let autoRotate = 0;
+    
+    // Navigation Rotation Offsets (to face the user better on hover)
+    const hoverOffsets = {
+        'front': { x: 0, y: 0 },
+        'right': { x: 0, y: -90 },
+        'back': { x: 0, y: -180 },
+        'left': { x: 0, y: -270 }
+    };
 
-    // Magnetic Mouse Follow
+    const benefits = {
+        'LEISTUNGEN': 'Alles für Ihren Erfolg',
+        'PORTFOLIO': '3+ Premium Live Demos',
+        'PREISE': 'Transparente Pakete',
+        'KONTAK': 'Kostenlose Analyse' // Adjusted for face text, contact id added to cta
+    };
+
+    // Magnetic Mouse Follow & Hover Logic
     hero.addEventListener('mousemove', (e) => {
+        const isHoveringFace = e.target.closest('.face');
         const rect = hero.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        // Tilt towards mouse
-        targetRotateY = (x / (rect.width / 2)) * 30; // Max 30deg
-        targetRotateX = (y / (rect.height / 2)) * -30;
+        
+        if (isHoveringFace && isHoveringFace.dataset.target) {
+            const side = isHoveringFace.classList.contains('front') ? 'front' :
+                         isHoveringFace.classList.contains('right') ? 'right' :
+                         isHoveringFace.classList.contains('back') ? 'back' : 'left';
+            
+            // Bias rotation to face the user
+            targetRotateX = hoverOffsets[side].x;
+            targetRotateY = hoverOffsets[side].y;
+            
+            // Show Tooltip
+            const label = isHoveringFace.innerText;
+            if (tooltip && benefits[label]) {
+                tooltip.innerText = `${label}: ${benefits[label]}`;
+                tooltip.classList.add('active');
+            }
+        } else {
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            targetRotateY = (x / (rect.width / 2)) * 30;
+            targetRotateX = (y / (rect.height / 2)) * -30;
+            if (tooltip) tooltip.classList.remove('active');
+        }
     });
 
     hero.addEventListener('mouseleave', () => {
         targetRotateX = 0;
         targetRotateY = 0;
+        if (tooltip) tooltip.classList.remove('active');
+    });
+
+    // Navigation Click Logic
+    faces.forEach(face => {
+        face.addEventListener('click', (e) => {
+            const targetId = face.dataset.target;
+            if (targetId) {
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
     });
 
     // High Speed Spin on CTA Button Interactions
     if (ctaBtn) {
         const triggerSpin = () => {
             cube.classList.add('cube-fast-spin');
-            // Store current rotation for the animation start
             cube.style.setProperty('--rot-x', `${currentRotateX}deg`);
             cube.style.setProperty('--rot-y', `${currentRotateY + autoRotate}deg`);
             
@@ -223,7 +271,6 @@ function initInteractiveCube() {
                 cube.classList.remove('cube-fast-spin');
             }, 600);
         };
-
         ctaBtn.addEventListener('mouseenter', triggerSpin);
         ctaBtn.addEventListener('click', triggerSpin);
     }
@@ -231,12 +278,9 @@ function initInteractiveCube() {
     // Animation Loop (60 FPS)
     function animate() {
         if (!cube.classList.contains('cube-fast-spin')) {
-            autoRotate += 0.5; // Slow constant rotation
-
-            // Smooth Interpolation (Lerp)
+            autoRotate += 0.5;
             currentRotateX += (targetRotateX - currentRotateX) * 0.1;
             currentRotateY += (targetRotateY - currentRotateY) * 0.1;
-
             cube.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY + autoRotate}deg)`;
         }
         requestAnimationFrame(animate);

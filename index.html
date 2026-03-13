@@ -50,14 +50,15 @@
                 </div>
                 <div class="hero-visual reveal fade-left">
                     <div class="cube-container">
-                        <div class="cube">
-                            <div class="face front"></div>
-                            <div class="face back"></div>
-                            <div class="face right"></div>
-                            <div class="face left"></div>
+                        <div class="cube shadow-effect">
+                            <div class="face front" data-target="#pains"><span>LEISTUNGEN</span></div>
+                            <div class="face back" data-target="#pricing"><span>PREISE</span></div>
+                            <div class="face right" data-target="#portfolio"><span>PORTFOLIO</span></div>
+                            <div class="face left" data-target="#contact"><span>KONTAKT</span></div>
                             <div class="face top"></div>
                             <div class="face bottom"></div>
                         </div>
+                        <div class="cube-tooltip"></div>
                     </div>
                 </div>
             </div>
@@ -300,7 +301,7 @@
             </div>
         </section>
 
-        <section class="cta-section container reveal">
+        <section id="contact" class="cta-section container reveal">
             <div class="cta-box glass-card">
                 <h2>Bereit für den nächsten Schritt?</h2>
                 <div class="input-group">
