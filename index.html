@@ -37,20 +37,27 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Block 1: Hero Section -->
         <section id="hero" class="hero-section">
             <div class="container hero-content">
                 <div class="hero-text reveal">
-                    <h1>Webseiten, die verkaufen. <br><span class="highlight">Technik</span>, die begeistert.</h1>
-                    <p class="subtext">Premium Webdesign für den deutschen Mittelstand. Wir bauen digitale
-                        Infrastrukturen, die Ihre Marke stärken und Neukunden gewinnen.</p>
+                    <h1>Mehr Kundenanfragen über Ihre Webseite – <br><span class="highlight">live in nur 24 Stunden.</span></h1>
+                    <p class="subtext">Während klassische Agenturen Wochen brauchen, bauen wir Landingpages, die Besucher direkt in Anfragen verwandeln.</p>
                     <div class="hero-actions">
-                        <button class="btn btn-primary">Jetzt starten</button>
+                        <button class="btn btn-primary" onclick="window.location.href='#contact'">Kostenlose Analyse</button>
+                        <button class="btn btn-outline" style="margin-left: 1rem;" onclick="window.location.href='#portfolio'">Beispiele ansehen</button>
                     </div>
                 </div>
                 <div class="hero-visual reveal fade-left">
-                    <div class="sphere-container">
-                        <canvas id="sphereCanvas"></canvas>
+                    <!-- NEW WIDGET: Conversion Flow -->
+                    <div class="conversion-widget">
+                        <div class="cw-graph">
+                            <svg viewBox="0 0 100 50" class="cw-line-svg">
+                                <path d="M0,45 Q25,45 50,25 T100,5" class="cw-line-path"></path>
+                            </svg>
+                        </div>
+                        <div class="cw-icon cw-user">👤 <span>User</span></div>
+                        <div class="cw-icon cw-lead">📈 <span>Leads</span></div>
                     </div>
                 </div>
             </div>
@@ -71,38 +78,35 @@
             </div>
         </section>
 
-        <!-- Pain & Solution Grid (Features) -->
+        <!-- Block 2: Problem Section -->
         <section id="pains" class="pains-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Die Realität vieler Unternehmen</h2>
-                    <p>Warum Ihre aktuelle Website vermutlich Geld verbrennt.</p>
+                    <h2>Warum die meisten Webseiten keine Kunden bringen</h2>
+                    <p>Die 3 größten Fehler klassischer Agenturen.</p>
                 </div>
                 <div class="grid grid-3">
                     <div class="card tilt-card reveal">
                         <div class="card-inner">
-                            <div class="icon-wrap">1</div>
-                            <h3>Langsame Ladezeiten</h3>
-                            <p>Kunden brechen ab, bevor Ihre Seite überhaupt geladen ist. Wir optimieren auf
-                                Millisekunden.</p>
+                            <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5);">❌</div>
+                            <h3>Nur hübsch, aber keine Struktur</h3>
+                            <p>Schönes Design bringt nichts, wenn der Besucher nicht zur Kontaktanfrage geführt wird.</p>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                     <div class="card tilt-card reveal delay-1">
                         <div class="card-inner">
-                            <div class="icon-wrap">2</div>
-                            <h3>Keine Leads</h3>
-                            <p>Besucher kommen und gehen ohne Kontakt. Wir implementieren Conversion-optimierte Funnels.
-                            </p>
+                            <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5);">❌</div>
+                            <h3>Zu lange Ladezeiten</h3>
+                            <p>Kunden brechen ab, bevor Ihre Seite überhaupt geladen ist. Wir optimieren auf Millisekunden.</p>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                     <div class="card tilt-card reveal delay-2">
                         <div class="card-inner">
-                            <div class="icon-wrap">3</div>
-                            <h3>Veraltetes Design</h3>
-                            <p>Repräsentiert Ihre Website Ihre Qualität? Wir bauen moderne, vertrauensbildende
-                                Markenauftritte.</p>
+                            <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5);">❌</div>
+                            <h3>Fehlende mobile Optimierung</h3>
+                            <p>Über 70% der Nutzer surfen mobil. Eine Desktop-fokussierte Seite kostet Sie täglich bares Geld.</p>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
@@ -231,58 +235,50 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section id="pricing" class="pricing-section container">
-            <div class="section-header reveal">
-                <h2>Preise</h2>
-                <p>Transparente Investitionen für messbares Wachstum.</p>
-            </div>
-            <div class="grid grid-3 pricing-grid">
-                <div class="glass-card pricing-card reveal">
-                    <h3>Essential <span
-                            style="font-size: 0.8rem; opacity: 0.7; font-weight: normal; display: block; margin-top: 5px;">(Starter
-                            Presence)</span></h3>
-                    <div class="price">Ab 990 €</div>
-                    <ul class="features">
-                        <li>Premium Design</li>
-                        <li>Mobile Optimierung</li>
-                        <li>Basis SEO</li>
-                    </ul>
-                    <button class="btn btn-primary pricing-btn">Projekt anfragen</button>
+        <!-- Block 7: Pricing Section -->
+        <section id="pricing" class="pricing-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Transparent & Fair</h2>
+                    <p>Wählen Sie das Modell, das zu Ihrer Liquidität passt.</p>
                 </div>
-                <div class="glass-card pricing-card featured reveal delay-1">
-                    <div class="glowing-badge">Most Popular</div>
-                    <h3>Business Growth <span
-                            style="font-size: 0.8rem; opacity: 0.7; font-weight: normal; display: block; margin-top: 5px;">(Premium
-                            Business)</span></h3>
-                    <div class="price">Ab 2.490 €</div>
-                    <ul class="features">
-                        <li>Alles aus Essential</li>
-                        <li>High-Conversion Funnels</li>
-                        <li>Lead-Generierung</li>
-                        <li>Performance Tracking</li>
-                    </ul>
-                    <button class="btn btn-primary pricing-btn">Projekt anfragen</button>
-                </div>
-                <div class="glass-card pricing-card reveal delay-2">
-                    <h3>Enterprise <span
-                            style="font-size: 0.8rem; opacity: 0.7; font-weight: normal; display: block; margin-top: 5px;">(Custom
-                            Quote)</span></h3>
-                    <div class="price">Individuell</div>
-                    <ul class="features">
-                        <li>Maßgeschneiderte Systeme</li>
-                        <li>CRM Integration</li>
-                        <li>Workflow Automatisierung</li>
-                        <li>Dedicated Support</li>
-                    </ul>
-                    <button class="btn btn-primary pricing-btn">Projekt anfragen</button>
+                <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
+                    <!-- Option 1: One-off -->
+                    <div class="pricing-card tilt-card reveal">
+                        <div class="card-inner">
+                            <h3>Landingpage</h3>
+                            <div class="price">1.490 € <span style="font-size: 1rem; color: var(--clr-text-muted);">Einmalig</span></div>
+                            <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">Ideal für schnelle Ergebnisse und eigene Hostings.</p>
+                            <ul class="features">
+                                <li>Custom Design &amp; Copywriting</li>
+                                <li>Mobile Optimierung</li>
+                                <li>WhatsApp / Call Integration</li>
+                                <li>Übergabe & Source Code inkl.</li>
+                            </ul>
+                            <button class="btn btn-outline" style="width: 100%;" onclick="window.location.href='#contact'">Analyse anfragen</button>
+                        </div>
+                        <div class="glow-effect"></div>
+                    </div>
+                    <!-- Option 2: Subscription -->
+                    <div class="pricing-card tilt-card premium reveal delay-1">
+                        <div class="card-inner">
+                            <div class="popular-badge">Beliebteste Wahl</div>
+                            <h3>All-In-One Partner</h3>
+                            <div class="price">199 € <span style="font-size: 1rem; color: var(--clr-text-muted);">/ Monat</span></div>
+                            <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">0€ Setup-Kosten. Wir bauen und hosten für Sie.</p>
+                            <ul class="features">
+                                <li><strong>Komplettes Erstellung Setup (0€)</strong></li>
+                                <li>Premium Hosting &amp; Wartung</li>
+                                <li>Unbegrenzte inhaltliche Anpassungen</li>
+                                <li>Live-Support via WhatsApp</li>
+                            </ul>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="window.location.href='#contact'">Analyse anfragen</button>
+                        </div>
+                        <div class="glow-effect"></div>
+                    </div>
                 </div>
             </div>
-            <p class="pricing-note reveal text-center mt-4"
-                style="color: var(--clr-text-muted); text-align: center; margin-top: 2rem;">Alle Preise zzgl. MwSt. -
-                Qualität Made in Germany.</p>
         </section>
-
         <!-- Automation Section -->
         <section id="automation" class="automation-section container reveal" style="padding-top: 0;">
             <div class="glass-card automation-card" style="text-align: center;">
