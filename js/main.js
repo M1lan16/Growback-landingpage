@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTiltCards();
     initAudioFeedback();
     initMobileMenu();
-    // initPricingHoverSound(); // Disabled per user request: only button blips active
+    initFAQAccordion();
 });
 
 /* --- 1. Scroll Reveal (Intersection Observer) --- */
@@ -81,7 +81,7 @@ function initTiltCards() {
 const clickSoundSrc = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
 
 function initAudioFeedback() {
-    const buttons = document.querySelectorAll('.btn-primary');
+    const buttons = document.querySelectorAll('.btn, .faq-question');
 
     let audioCtx = null;
 
@@ -97,9 +97,9 @@ function initAudioFeedback() {
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
 
-        oscillator.type = 'sine'; // Smooth tone
-        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); // High pitch
-        oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1); // Drop
+        oscillator.type = 'sine'; 
+        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); 
+        oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1); 
 
         gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
@@ -145,37 +145,22 @@ function initMobileMenu() {
     });
 }
 
-/* --- 6. Pricing Hover Sound --- */
-function initPricingHoverSound() {
-    const pricingCards = document.querySelectorAll('.pricing-card');
-
-    let audioCtx = null;
-    function playHoverSound() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const oscillator = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-
-        oscillator.type = 'triangle';
-        oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.1);
-
-        gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-
-        oscillator.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-
-        oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.1);
-    }
-
-    pricingCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            playHoverSound();
+/* --- 6. FAQ Accordion --- */
+function initFAQAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all others
+            faqItems.forEach(i => i.classList.remove('active'));
+            
+            // Toggle current
+            if (!isActive) {
+                item.classList.add('active');
+            }
         });
     });
 }

@@ -48,17 +48,8 @@
                         <button class="btn btn-outline" style="margin-left: 1rem;" onclick="window.location.href='#portfolio'">Beispiele ansehen</button>
                     </div>
                 </div>
-                <div class="hero-visual reveal fade-left">
-                    <!-- NEW WIDGET: Conversion Flow -->
-                    <div class="conversion-widget">
-                        <div class="cw-graph">
-                            <svg viewBox="0 0 100 50" class="cw-line-svg">
-                                <path d="M0,45 Q25,45 50,25 T100,5" class="cw-line-path"></path>
-                            </svg>
-                        </div>
-                        <div class="cw-icon cw-user">👤 <span>User</span></div>
-                        <div class="cw-icon cw-lead">📈 <span>Leads</span></div>
-                    </div>
+                <div class="hero-visual reveal fade-up">
+                    <div class="liquid-sphere"></div>
                 </div>
             </div>
             <!-- Trust Bar / Logo Ticker -->
@@ -86,29 +77,74 @@
                     <p>Die 3 größten Fehler klassischer Agenturen.</p>
                 </div>
                 <div class="grid grid-3">
-                    <div class="card tilt-card reveal">
-                        <div class="card-inner">
-                            <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5);">❌</div>
-                            <h3>Nur hübsch, aber keine Struktur</h3>
-                            <p>Schönes Design bringt nichts, wenn der Besucher nicht zur Kontaktanfrage geführt wird.</p>
-                        </div>
-                        <div class="glow-effect"></div>
+                    <div class="haus-card reveal">
+                        <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); font-size: 3rem; margin-bottom: 1.5rem;">❌</div>
+                        <h3>Keine Conversion-Struktur</h3>
+                        <p>Die meisten Seiten sind nur digitale Visitenkarten ohne klaren Weg zur Anfrage.</p>
                     </div>
-                    <div class="card tilt-card reveal delay-1">
-                        <div class="card-inner">
-                            <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5);">❌</div>
-                            <h3>Zu lange Ladezeiten</h3>
-                            <p>Kunden brechen ab, bevor Ihre Seite überhaupt geladen ist. Wir optimieren auf Millisekunden.</p>
-                        </div>
-                        <div class="glow-effect"></div>
+                    <div class="haus-card reveal delay-1">
+                        <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); font-size: 3rem; margin-bottom: 1.5rem;">❌</div>
+                        <h3>Zu langsame Ladezeiten</h3>
+                        <p>Sekunden entscheiden über Abbrüche. Wir optimieren auf High-Speed Performance.</p>
                     </div>
-                    <div class="card tilt-card reveal delay-2">
-                        <div class="card-inner">
-                            <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5);">❌</div>
-                            <h3>Fehlende mobile Optimierung</h3>
-                            <p>Über 70% der Nutzer surfen mobil. Eine Desktop-fokussierte Seite kostet Sie täglich bares Geld.</p>
-                        </div>
-                        <div class="glow-effect"></div>
+                    <div class="haus-card reveal delay-2">
+                        <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); font-size: 3rem; margin-bottom: 1.5rem;">❌</div>
+                        <h3>Veraltete Technik</h3>
+                        <p>Während Wettbewerber modernste Funnel nutzen, verlieren Sie täglich potenzielle Leads.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Block 3: Solution Section -->
+        <section id="solution" class="pains-section" style="border-top: 1px solid #111;">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Unsere Landingpages für maximale Anfragen</h2>
+                    <p>Psychologie trifft auf High-End Engineering.</p>
+                </div>
+                <div class="grid grid-3">
+                    <div class="haus-card reveal">
+                        <div class="advantage-icon">🎯</div>
+                        <h3>Konversions-Struktur</h3>
+                        <p>Jedes Detail ist darauf ausgelegt, den Besucher emotional abzuholen und zur Handlung zu bewegen.</p>
+                    </div>
+                    <div class="haus-card reveal delay-1">
+                        <div class="advantage-icon">⚡</div>
+                        <h3>WhatsApp & Call Integration</h3>
+                        <p>Hürdenlose Kommunikation sorgt für eine signifikant höhere Antwortrate Ihrer Interessenten.</p>
+                    </div>
+                    <div class="haus-card reveal delay-2">
+                        <div class="advantage-icon">📱</div>
+                        <h3>Mobile First Ansatz</h3>
+                        <p>Perfekte Darstellung auf allen Geräten. Über 80% Ihrer Kunden erreichen Sie heute am Smartphone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Block 4: Workflow Section (The Haus Method) -->
+        <section id="workflow" class="pains-section" style="background-color: var(--clr-bg); border-top: 1px solid #111;">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Der Prozess</h2>
+                    <p>Einfach. Transparent. Schnell.</p>
+                </div>
+                <div class="grid grid-3">
+                    <div class="haus-card reveal">
+                        <div class="haus-number">01</div>
+                        <h3>Analyse</h3>
+                        <p>Wir prüfen Ihren Ist-Zustand, definieren die Zielgruppe und konzipieren die Struktur.</p>
+                    </div>
+                    <div class="haus-card reveal delay-1">
+                        <div class="haus-number">02</div>
+                        <h3>Erstellung</h3>
+                        <p>Design, Copywriting und Programmierung greifen reibungslos ineinander für das perfekte Nutzererlebnis.</p>
+                    </div>
+                    <div class="haus-card reveal delay-2">
+                        <div class="haus-number">03</div>
+                        <h3>Anfragen erhalten</h3>
+                        <p>Go-Live in Rekordzeit. Ihre neue Landingpage generiert ab dem ersten Tag digital messbar Leads.</p>
                     </div>
                 </div>
             </div>
@@ -122,124 +158,88 @@
             </div>
             <div class="grid grid-2">
                 <!-- Case 1: Barber -->
-                <div class="browser-window reveal">
-                    <div class="browser-header">
-                        <span class="dot close"></span>
-                        <span class="dot min"></span>
-                        <span class="dot max"></span>
+                <a href="cases/barber/index.html" class="haus-portfolio-card reveal">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #0f172a, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✂️</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Modern Barber Systems</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Vintage Style & Automated Booking Flow</div>
                     </div>
-                    <div class="browser-body">
-                        <div class="placeholder-img"
-                            style="background: linear-gradient(135deg, #020617, #0f172a, rgba(0, 242, 255, 0.05)); height: 300px; display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-primary);">✂️</div>
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--clr-text);">UX-Design &amp;
-                                Terminbuchung</div>
-                            <div style="font-size: 0.85rem; margin-top: 1rem; font-family: monospace; opacity: 0.6;">[
-                                System: API_SYNC_ACTIVE ]</div>
-                        </div>
+                    <div class="haus-portfolio-overlay">
+                        <span class="view-project-btn">View Project</span>
                     </div>
-                    <div class="browser-footer" style="text-align: left;">
-                        <h3
-                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
-                            Modern Barber Systems</h3>
-                        <p
-                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
-                            Automatisierte Kunden-Termine und mobiles First-Class Design.</p>
-                        <a href="cases/barber/index.html" class="btn btn-primary"
-                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
-                    </div>
-                </div>
+                </a>
 
                 <!-- Case 2: Clinic -->
-                <div class="browser-window reveal delay-1">
-                    <div class="browser-header">
-                        <span class="dot close"></span>
-                        <span class="dot min"></span>
-                        <span class="dot max"></span>
+                <a href="cases/clinic/index.html" class="haus-portfolio-card reveal delay-1">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #0f172a, #020617, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🧬</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Aesthetik-Klinik Portal</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">High-End Visuals (Pistachio Mode)</div>
                     </div>
-                    <div class="browser-body">
-                        <div class="placeholder-img"
-                            style="background: linear-gradient(135deg, #0f172a, #020617, rgba(0, 242, 255, 0.05)); height: 300px; display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-primary);">🧬</div>
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--clr-text);">DSGVO &amp;
-                                High-End Visuals</div>
-                            <div style="font-size: 0.85rem; margin-top: 1rem; font-family: monospace; opacity: 0.6;">[
-                                Security: Level_RSA_2048 ]</div>
-                        </div>
+                    <div class="haus-portfolio-overlay">
+                        <span class="view-project-btn">View Project</span>
                     </div>
-                    <div class="browser-footer" style="text-align: left;">
-                        <h3
-                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
-                            Aesthetik-Klinik Portal</h3>
-                        <p
-                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
-                            Patientengewinnung durch psychologisch fundierte User-Journeys.</p>
-                        <a href="cases/clinic/index.html" class="btn btn-primary"
-                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
-                    </div>
-                </div>
+                </a>
 
                 <!-- Case 3: Wellness -->
-                <div class="browser-window reveal delay-2">
-                    <div class="browser-header">
-                        <span class="dot close"></span>
-                        <span class="dot min"></span>
-                        <span class="dot max"></span>
+                <a href="cases/wellness/index.html" class="haus-portfolio-card reveal delay-2">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #1e293b, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Boutique Wellness Experience</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Zen-Minimalism lead generation</div>
                     </div>
-                    <div class="browser-body">
-                        <div class="placeholder-img"
-                            style="background: linear-gradient(135deg, #020617, #1e293b, rgba(0, 242, 255, 0.05)); height: 300px; display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-primary);">✨</div>
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--clr-text);">Storytelling
-                                &amp; Automatisierung</div>
-                            <div style="font-size: 0.85rem; margin-top: 1rem; font-family: monospace; opacity: 0.6;">[
-                                Workflow: Lead_Nurture_Active ]</div>
-                        </div>
+                    <div class="haus-portfolio-overlay">
+                        <span class="view-project-btn">View Project</span>
                     </div>
-                    <div class="browser-footer" style="text-align: left;">
-                        <h3
-                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
-                            Boutique Wellness Experience</h3>
-                        <p
-                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
-                            Vom ersten Klick zur treuen Stammkundschaft.</p>
-                        <a href="cases/wellness/index.html" class="btn btn-primary"
-                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
-                    </div>
-                </div>
+                </a>
 
                 <!-- Case 4: TCN Tennis -->
-                <div class="browser-window reveal delay-3">
-                    <div class="browser-header">
-                        <span class="dot close"></span>
-                        <span class="dot min"></span>
-                        <span class="dot max"></span>
+                <a href="https://tcn-tennis.vercel.app/" target="_blank" class="haus-portfolio-card reveal delay-3">
+                    <img src="/Users/milankarpov/.gemini/antigravity/brain/07a6d9b1-01f3-41ac-9411-20c7a8e9543a/tcn_tennis_placeholder_png_1773422563760.png" alt="TCN Tennis Portal">
+                    <div class="haus-portfolio-overlay">
+                        <span class="view-project-btn">View Project</span>
                     </div>
-                    <div class="browser-body">
-                        <img src="/Users/milankarpov/.gemini/antigravity/brain/07a6d9b1-01f3-41ac-9411-20c7a8e9543a/tcn_tennis_placeholder_png_1773422563760.png"
-                            alt="TCN Tennis Portal"
-                            style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="iframe-overlay"></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Block 6: Advantages Section -->
+        <section id="advantages" class="pains-section" style="border-top: 1px solid #111;">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Warum Unternehmen mit uns arbeiten</h2>
+                    <p>Qualität ohne Kompromisse.</p>
+                </div>
+                <div class="grid grid-2">
+                    <div class="haus-card reveal">
+                        <div class="advantage-icon">⚡</div>
+                        <h3>24-48h Delivery</h3>
+                        <p>Zeit ist Geld. Während andere noch planen, ist Ihre Seite bereits online und sammelt Leads.</p>
                     </div>
-                    <div class="browser-footer" style="text-align: left;">
-                        <h3
-                            style="color: var(--clr-primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;">
-                            TCN Tennis Portal</h3>
-                        <p
-                            style="color: var(--clr-text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0; text-align: left; margin-bottom: 20px;">
-                            Digitales Ökosystem für Tennis-Management. Fokus auf Speed, Clean UI und komplexe Datenstruktur.</p>
-                        <a href="https://tcn-tennis.vercel.app/" target="_blank" class="btn btn-primary"
-                            style="width: 100%; text-align: center;">Live Demo ansehen</a>
+                    <div class="haus-card reveal delay-1">
+                        <div class="advantage-icon">📞</div>
+                        <h3>Lead-Focus</h3>
+                        <p>Wir bauen keine Webseiten, wir bauen Maschinen für Ihren Vertriebserfolg.</p>
+                    </div>
+                    <div class="haus-card reveal delay-2">
+                        <div class="advantage-icon">💰</div>
+                        <h3>Klarer Fixpreis</h3>
+                        <p>Keine versteckten Kosten. Preissicherheit ab der ersten Sekunde der Zusammenarbeit.</p>
+                    </div>
+                    <div class="haus-card reveal delay-3">
+                        <div class="advantage-icon">📱</div>
+                        <h3>High-End Technik</h3>
+                        <p>Obsidian Style mit flüssigen 60 FPS Animationen für den besten ersten Eindruck.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Block 7: Pricing Section -->
+        <!-- Block 7: Offer Section -->
         <section id="pricing" class="pricing-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Transparent & Fair</h2>
+                    <h2>Ihre neue Seite zur Kundengewinnung</h2>
                     <p>Wählen Sie das Modell, das zu Ihrer Liquidität passt.</p>
                 </div>
                 <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
@@ -255,47 +255,75 @@
                                 <li>WhatsApp / Call Integration</li>
                                 <li>Übergabe & Source Code inkl.</li>
                             </ul>
-                            <button class="btn btn-outline" style="width: 100%;" onclick="window.location.href='#contact'">Analyse anfragen</button>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Kostenlose Analyse</button>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                     <!-- Option 2: Subscription -->
-                    <div class="pricing-card tilt-card premium reveal delay-1">
+                    <div class="pricing-card tilt-card reveal delay-1">
                         <div class="card-inner">
-                            <div class="popular-badge">Beliebteste Wahl</div>
-                            <h3>All-In-One Partner</h3>
+                            <h3>0€ Setup</h3>
                             <div class="price">199 € <span style="font-size: 1rem; color: var(--clr-text-muted);">/ Monat</span></div>
-                            <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">0€ Setup-Kosten. Wir bauen und hosten für Sie.</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">Wir bauen, hosten und warten alles für Sie.</p>
                             <ul class="features">
-                                <li><strong>Komplettes Erstellung Setup (0€)</strong></li>
+                                <li><strong>Komplette Erstellung inklusive</strong></li>
                                 <li>Premium Hosting &amp; Wartung</li>
-                                <li>Unbegrenzte inhaltliche Anpassungen</li>
+                                <li>Inhaltliche Anpassungen inklusive</li>
                                 <li>Live-Support via WhatsApp</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="window.location.href='#contact'">Analyse anfragen</button>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Kostenlose Analyse</button>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Automation Section -->
-        <section id="automation" class="automation-section container reveal" style="padding-top: 0;">
-            <div class="glass-card automation-card" style="text-align: center;">
-                <h2>Intelligente Prozesse statt manueller Arbeit.</h2>
-                <p class="subtext" style="color: var(--clr-text-muted); font-size: var(--fs-h3); margin-top: 1rem;">Wir
-                    verbinden Ihre Webseite direkt mit Ihrem Vertriebsprozess. Leads landen dort, wo sie hingehören –
-                    sofort.</p>
+
+        <!-- Block 8: Demo-Offer -->
+        <section id="demo" class="container reveal">
+            <div class="demo-offer-box">
+                <h2>Kostenlose Webseiten-Analyse</h2>
+                <p class="subtext" style="max-width: 800px; margin: 2rem auto;">Wir zeigen Ihnen in einem 15-minütigen Video-Call genau auf, warum Ihre aktuelle Webseite keine Kunden bringt und wie wir das in Rekordzeit lösen.</p>
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Termin vereinbaren</button>
             </div>
         </section>
 
+        <!-- Block 9: FAQ -->
+        <section id="faq" class="faq-section container">
+            <div class="section-header reveal">
+                <h2>Häufig gestellte Fragen</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item reveal">
+                    <button class="faq-question">Wie schnell ist die Seite online? <span class="faq-icon"></span></button>
+                    <div class="faq-answer">
+                        <p>In der Regel ist Ihr neuer Internetauftritt innerhalb von 24 bis 48 Stunden nach Bereitstellung der Basis-Informationen live.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Brauche ich eigene Inhalte oder Texte? <span class="faq-icon"></span></button>
+                    <div class="faq-answer">
+                        <p>Nein. Unser Team übernimmt das komplette Copywriting basierend auf einem kurzen Briefing-Gespräch mit Ihnen.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Was kostet die Erstellung genau? <span class="faq-icon"></span></button>
+                    <div class="faq-answer">
+                        <p>Wir arbeiten mit fairen Fixpreisen. Entweder einmalig 1.490 € oder in unserem Partner-Modell für 199 € pro Monat ohne Setup-Kosten.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Block 10: Final CTA -->
         <section id="contact" class="cta-section container reveal">
-            <div class="cta-box glass-card">
-                <h2>Bereit für den nächsten Schritt?</h2>
+            <div class="cta-box glass-card" style="background: var(--clr-bg); border-color: var(--clr-primary);">
+                <h2 style="font-size: 3rem; font-weight: 300;">Bereit für mehr Kundenanfragen?</h2>
+                <p style="margin-bottom: 2rem; color: var(--clr-text-muted);">Hinterlassen Sie Ihre E-Mail und wir melden uns innerhalb von 2 Stunden.</p>
                 <div class="input-group">
-                    <input type="email" id="email-optin" class="glow-input" placeholder="Ihre E-Mail Adresse" required>
+                    <input type="email" id="email-optin" class="glow-input" placeholder="Ihre E-Mail Adresse" required style="max-width: 500px;">
                     <label for="email-optin" class="sr-only">E-Mail Adresse</label>
-                    <button class="btn btn-primary ml-4">Jetzt Analyse anfordern</button>
+                    <button class="btn btn-primary" style="padding: 1.5rem 3rem; font-size: 1.2rem;">Jetzt Analyse anfordern</button>
                 </div>
             </div>
         </section>

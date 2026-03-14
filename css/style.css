@@ -4,19 +4,21 @@
 =========================================================
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
 /* --- 1. CSS VARIABLES (Design System) --- */
 :root {
   --clr-primary: #00f2ff;
-  --clr-primary-glow: rgba(0, 242, 255, 0.4);
-  --clr-bg: #020617;
-  --clr-surface: rgba(255, 255, 255, 0.05);
+  --clr-primary-glow: rgba(0, 242, 255, 0.6);
+  --clr-bg: #050505; /* Obsidian Black */
+  --clr-surface: rgba(255, 255, 255, 0.03);
   /* Glassmorphism base */
-  --clr-surface-hover: rgba(255, 255, 255, 0.08);
+  --clr-surface-hover: rgba(255, 255, 255, 0.06);
 
   --clr-text: #ffffff;
   --clr-text-muted: #94a3b8;
 
-  --font-main: 'Inter', sans-serif;
+  --font-main: 'Outfit', sans-serif;
 
   --spacing-sm: 0.5rem;
   /* 8px */
@@ -249,6 +251,44 @@ ul {
   opacity: 1;
 }
 
+/* Haus Method Workflow Cards */
+.haus-card {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: var(--border-radius-sm);
+  padding: 3rem 2rem;
+  transition: transform var(--transition-normal), border-color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.haus-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 242, 255, 0.3);
+}
+
+.haus-number {
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--clr-primary);
+  margin-bottom: 1.5rem;
+  font-family: monospace;
+  opacity: 0.8;
+}
+
+.haus-card h3 {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.haus-card p {
+  color: var(--clr-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 .icon-wrap {
   font-size: 2rem;
   font-weight: 800;
@@ -351,28 +391,36 @@ ul {
 
 .hero-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-lg);
+  justify-content: center;
+  text-align: center;
+  gap: var(--spacing-xl);
   flex: 1;
 }
 
 .hero-text {
-  flex: 1;
-  max-width: 600px;
+  max-width: 900px;
 }
 
 .hero-text h1 {
   font-size: var(--fs-h1);
   line-height: 1.1;
   margin-bottom: var(--spacing-md);
-  font-weight: 800;
+  font-weight: 300;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: -1px;
 }
 
 .hero-text .subtext {
   color: var(--clr-text-muted);
   font-size: var(--fs-h3);
   margin-bottom: var(--spacing-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* 3D CSS Cube Visual */
@@ -385,101 +433,41 @@ ul {
   pointer-events: none; /* Let clicks pass through to background if needed */
 }
 
-/* Conversion Flow Widget */
-.conversion-widget {
+/* Liquid 3D Sphere */
+.liquid-sphere {
   width: 400px;
-  height: 300px;
-  position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 242, 255, 0.05);
+  height: 400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #4c1d95, #00ffff);
+  box-shadow: inset 20px 20px 40px rgba(0, 242, 255, 0.6), inset -20px -20px 40px rgba(76, 29, 149, 0.6), 0 0 50px rgba(0, 242, 255, 0.4);
+  animation: liquid-morph 8s ease-in-out infinite alternate, spin-slow 20s linear infinite;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.cw-graph {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: flex-end;
+@keyframes liquid-morph {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  100% { border-radius: 40% 60% 30% 70% / 60% 50% 70% 30%; }
 }
 
-.cw-line-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.cw-line-path {
-  fill: none;
-  stroke: var(--clr-primary);
-  stroke-width: 2;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.8));
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  animation: drawLine 3s ease-out forwards infinite alternate;
-}
-
-@keyframes drawLine {
-  to { stroke-dashoffset: 0; }
-}
-
-.cw-icon {
-  position: absolute;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(0, 242, 255, 0.3);
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--clr-text);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
-}
-
-.cw-user {
-  bottom: 20px;
-  left: 20px;
-  animation: floatNode 4s ease-in-out infinite;
-}
-
-.cw-lead {
-  top: 20px;
-  right: 20px;
-  border-color: #2ED573;
-  box-shadow: 0 0 15px rgba(46, 213, 115, 0.2);
-  animation: floatNode 4s ease-in-out infinite 2s;
-}
-
-.cw-lead span { color: #2ED573; }
-
-@keyframes floatNode {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+@keyframes spin-slow {
+  100% { transform: rotate(360deg); }
 }
 
 @media(max-width: 900px) {
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  .hero-section {
     padding-top: var(--spacing-xl);
   }
 
-  .conversion-widget {
+  .liquid-sphere {
     width: 280px;
-    height: 220px;
+    height: 280px;
     margin-top: var(--spacing-xl);
   }
   .desktop-line { display: none !important; }
@@ -550,11 +538,14 @@ section {
 .section-header h2 {
   font-size: var(--fs-h2);
   margin-bottom: var(--spacing-sm);
+  font-weight: 300;
+  letter-spacing: -1px;
 }
 
 .section-header p {
   color: var(--clr-text-muted);
   font-size: var(--fs-h3);
+  font-weight: 200;
 }
 
 .pains-section h3 {
@@ -668,98 +659,64 @@ section {
   transition-delay: 0.2s;
 }
 
-/* --- 6. PORTFOLIO CARDS --- */
-.browser-window {
-  background: var(--clr-surface);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition-normal);
-}
+/* --- 6. PORTFOLIO CARDS (Clean Grid) --- */
 
-.browser-window:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 40px rgba(0, 242, 255, 0.1);
-  border-color: rgba(0, 242, 255, 0.3);
-}
-
-.browser-header {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 12px 16px;
-  display: flex;
-  gap: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.browser-header .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #334155;
-  transition: var(--transition-fast);
-}
-
-.browser-header .dot.close {
-  background: #ef4444;
-}
-
-.browser-header .dot.min {
-  background: #eab308;
-}
-
-.browser-header .dot.max {
-  background: #22c55e;
-}
-
-.browser-body {
-  height: 300px;
-  overflow: hidden;
+.haus-portfolio-card {
   position: relative;
-  background: #0f172a;
-}
-
-.mockup-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  pointer-events: none;
+  border-radius: 8px;
+  overflow: hidden;
   display: block;
+  background: var(--clr-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.iframe-overlay {
+.haus-portfolio-card img, 
+.haus-portfolio-card .placeholder-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.haus-portfolio-card:hover img,
+.haus-portfolio-card:hover .placeholder-img {
+  transform: scale(1.05);
+}
+
+.haus-portfolio-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 10;
-  transition: background var(--transition-fast);
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
-.browser-window:hover .iframe-overlay {
-  background: transparent;
-  pointer-events: none;
+.haus-portfolio-card:hover .haus-portfolio-overlay {
+  opacity: 1;
 }
 
-.browser-window:hover .mockup-iframe {
-  pointer-events: auto;
+.view-project-btn {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
-.browser-footer {
-  padding: 16px;
-  text-align: center;
-  background: rgba(2, 6, 23, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+.haus-portfolio-card:hover .view-project-btn {
+  background: rgba(0, 242, 255, 0.1);
+  border-color: var(--clr-primary);
 }
 
-.browser-footer h3 {
-  font-size: var(--fs-body);
-  color: var(--clr-text);
-  margin: 0;
-}
 
 /* --- 7. PRICING TIERS --- */
 .pricing-grid {
@@ -771,8 +728,8 @@ section {
   flex-direction: column;
   position: relative;
   transition: transform var(--transition-normal);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--clr-surface);
+  border: 1px solid #1a1a1a;
+  background: #0a0a0a;
 }
 
 .pricing-card:hover {
@@ -854,4 +811,93 @@ section {
   .pricing-card.featured:hover {
     transform: translateY(-10px);
   }
+}
+/* --- 8. ADVANTAGES SECTION --- */
+.advantage-card {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.advantage-icon {
+  font-size: 2.5rem;
+  color: var(--clr-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* --- 9. FAQ ACCORDION --- */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.faq-question:hover {
+  color: var(--clr-primary);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s;
+  color: var(--clr-text-muted);
+  line-height: 1.8;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding-bottom: 2rem;
+}
+
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: transform 0.4s;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--clr-primary);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-icon::before { width: 100%; height: 2px; }
+.faq-icon::after { width: 2px; height: 100%; }
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* --- 10. DEMO OFFER --- */
+.demo-offer-box {
+  background: linear-gradient(135deg, rgba(0, 242, 255, 0.05) 0%, rgba(76, 29, 149, 0.05) 100%);
+  border: 1px solid rgba(0, 242, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
+  text-align: center;
 }
