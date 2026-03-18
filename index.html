@@ -4,30 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growback | Web-Engineering für den deutschen Mittelstand</title>
-    <!-- Google Fonts: Inter -->
+    <title>Growback | Mehr Kundenanfragen für lokale Unternehmen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <!-- Main Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Inline addition: pricing note */
+        .pricing-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--clr-text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        /* Inline: comparison table text overrides */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+        .comparison-table th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid #1a1a1a;
+            color: var(--clr-text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .comparison-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #111;
+            color: #cbd5e1;
+            vertical-align: middle;
+        }
+        .comparison-table td:first-child {
+            color: var(--clr-text-muted);
+            font-weight: 500;
+        }
+        .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
+        @media(max-width: 600px) {
+            .comparison-table th, .comparison-table td { padding: 0.75rem; font-size: 0.8rem; }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- HEADER / NAV — FIX 1 -->
     <header class="glass-header" id="main-header">
         <div class="container nav-wrapper">
             <a href="#" class="logo" translate="no">GROWBACK</a>
             <nav class="main-nav">
                 <ul class="nav-links">
-                    <li><a href="#services">Leistungen</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#about">Über uns</a></li>
+                    <li><a href="#solution">Leistungen</a></li>
+                    <li><a href="#pricing">Preise</a></li>
+                    <li><a href="#demo-mechanism">Demo</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-            <button class="btn btn-primary" aria-label="KOSTENLOSE ANALYSE">KOSTENLOSE ANALYSE</button>
+            <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" aria-label="Demo anfordern">Demo anfordern</button>
             <button class="mobile-menu-toggle" aria-label="Menü umschalten">
                 <span></span>
                 <span></span>
@@ -37,293 +77,345 @@
     </header>
 
     <main>
-        <!-- Block 1: Hero Section -->
+
+        <!-- BLOCK 1: HERO — FIX 1 & 2: left-aligned, compact, ghost WA button -->
         <section id="hero" class="hero-section">
             <div class="container hero-content">
                 <div class="hero-text reveal">
-                    <h1>Mehr Kundenanfragen über Ihre Webseite – <br><span class="highlight">live in nur 24 Stunden.</span></h1>
-                    <p class="subtext">Während klassische Agenturen Wochen brauchen, bauen wir Landingpages, die Besucher direkt in Anfragen verwandeln.</p>
-                    <div class="hero-actions">
-                        <button class="btn btn-primary" onclick="window.location.href='#contact'">Kostenlose Analyse</button>
-                        <button class="btn btn-outline" style="margin-left: 1rem;" onclick="window.location.href='#portfolio'">Beispiele ansehen</button>
+                    <h1>Ein digitaler Auftritt, der Ihre Kunden überzeugt –<br><span class="highlight">in 48 Stunden startklar.</span></h1>
+                    <p class="subtext">Wir erstellen moderne Webseiten für lokale Unternehmen – die Vertrauen schaffen und Besucher zu echten Anfragen machen.</p>
+                    <ul class="hero-benefits">
+                        <li>✔ Alles aus einer Hand – Texte, Design &amp; Technik</li>
+                        <li>✔ Perfekt für Smartphone &amp; ersten Eindruck</li>
+                        <li>✔ In 2–3 Tagen online</li>
+                        <li>✔ Kostenloser Demo-Entwurf vorab</li>
+                    </ul>
+                    <div class="hero-actions-col">
+                        <button class="btn btn-primary" id="hero-cta-primary" onclick="document.getElementById('demo-mechanism').scrollIntoView({behavior:'smooth'})">👉 Kostenlose Demo-Webseite ansehen</button>
+                        <button class="btn-ghost-wa" onclick="window.open('https://wa.me/4915XXXXXXXX','_blank')">
+                            <!-- WhatsApp icon -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.742-.525-5.287-1.432l-.38-.224-3.763.896.934-3.666-.247-.392A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                            Oder persönlich via WhatsApp kontaktieren
+                        </button>
                     </div>
                 </div>
                 <div class="hero-visual reveal fade-up">
                     <div class="liquid-sphere"></div>
                 </div>
             </div>
-            <!-- Trust Bar / Logo Ticker -->
+            <!-- Trust Bar -->
             <div class="trust-bar">
                 <div class="ticker-wrap">
                     <div class="ticker">
-                        <div class="ticker-item">DAX-Niveau Technik</div>
-                        <div class="ticker-item">60 FPS Animationen</div>
+                        <div class="ticker-item">48h Startklar</div>
+                        <div class="ticker-item">Kostenlose Demo</div>
                         <div class="ticker-item">DSGVO Konform</div>
-                        <div class="ticker-item">High-Performance</div>
-                        <div class="ticker-item">DAX-Niveau Technik</div>
-                        <div class="ticker-item">60 FPS Animationen</div>
+                        <div class="ticker-item">Mobile First</div>
+                        <div class="ticker-item">Done for You</div>
+                        <div class="ticker-item">48h Startklar</div>
+                        <div class="ticker-item">Kostenlose Demo</div>
                         <div class="ticker-item">DSGVO Konform</div>
-                        <div class="ticker-item">High-Performance</div>
+                        <div class="ticker-item">Mobile First</div>
+                        <div class="ticker-item">Done for You</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Block 2: Problem Section -->
+        <!-- BLOCK 2: PROBLEM — FIX 3: Liquid Glass bento cards -->
         <section id="pains" class="pains-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Warum die meisten Webseiten keine Kunden bringen</h2>
-                    <p>Die 3 größten Fehler klassischer Agenturen.</p>
+                    <h2>Warum Ihre aktuelle Webseite Kunden kostet</h2>
+                    <p>Die meisten Kunden informieren sich heute online – bevor sie anrufen. Wenn Ihre Webseite nicht überzeugt:</p>
                 </div>
-                <div class="grid grid-3">
-                    <div class="haus-card reveal">
-                        <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); font-size: 3rem; margin-bottom: 1.5rem;">❌</div>
-                        <h3>Keine Conversion-Struktur</h3>
-                        <p>Die meisten Seiten sind nur digitale Visitenkarten ohne klaren Weg zur Anfrage.</p>
+                <div class="liquid-glass-grid">
+                    <!-- Card 1: full-width top -->
+                    <div class="lg-card reveal">
+                        <span class="pain-icon">❌</span>
+                        <h3>Kunden verlieren Vertrauen und gehen zur Konkurrenz</h3>
+                        <p>Wer online nicht überzeugt, verliert den potenziellen Kunden, bevor er überhaupt angerufen hat. Ein schlechter erster Eindruck ist in Sekunden gemacht.</p>
                     </div>
-                    <div class="haus-card reveal delay-1">
-                        <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); font-size: 3rem; margin-bottom: 1.5rem;">❌</div>
-                        <h3>Zu langsame Ladezeiten</h3>
-                        <p>Sekunden entscheiden über Abbrüche. Wir optimieren auf High-Speed Performance.</p>
+                    <!-- Card 2 -->
+                    <div class="lg-card reveal delay-1">
+                        <span class="pain-icon">❌</span>
+                        <h3>Ihre Seite funktioniert nicht auf dem Smartphone</h3>
+                        <p>Über 80 % Ihrer Besucher kommen mobil. Eine veraltete oder schlecht skalierte Seite kostet täglich bares Geld.</p>
                     </div>
-                    <div class="haus-card reveal delay-2">
-                        <div class="icon-wrap" style="color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); font-size: 3rem; margin-bottom: 1.5rem;">❌</div>
-                        <h3>Veraltete Technik</h3>
-                        <p>Während Wettbewerber modernste Funnel nutzen, verlieren Sie täglich potenzielle Leads.</p>
+                    <!-- Card 3 -->
+                    <div class="lg-card reveal delay-2">
+                        <span class="pain-icon">❌</span>
+                        <h3>Besucher kommen – aber niemand meldet sich</h3>
+                        <p>Ohne klaren Weg zur Anfrage verlassen sich Besucher nicht weiter – und Sie wissen nicht einmal, dass sie da waren.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Block 3: Solution Section -->
-        <section id="solution" class="pains-section" style="border-top: 1px solid #111;">
+        <!-- BLOCK 3: DEMO MECHANISM — FIX 4: Animated timeline -->
+        <section id="demo-mechanism" class="pains-section demo-mechanism-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Unsere Landingpages für maximale Anfragen</h2>
-                    <p>Psychologie trifft auf High-End Engineering.</p>
+                    <h2>Sehen Sie Ihre neue Webseite, bevor Sie entscheiden</h2>
+                    <p>Wir erstellen eine kostenlose Demo-Version für Ihr Unternehmen – basierend auf Ihrem aktuellen Auftritt.</p>
                 </div>
-                <div class="grid grid-3">
-                    <div class="haus-card reveal">
-                        <div class="advantage-icon">🎯</div>
-                        <h3>Konversions-Struktur</h3>
-                        <p>Jedes Detail ist darauf ausgelegt, den Besucher emotional abzuholen und zur Handlung zu bewegen.</p>
+                <div class="timeline-wrapper">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-steps">
+                        <div class="timeline-node reveal">
+                            <div class="node-circle">01</div>
+                            <div class="node-content">
+                                <h3>Wir erstellen Ihre Demo-Webseite</h3>
+                                <p>Individuell für Ihr Unternehmen – kein Template. Ein echter Entwurf, zugeschnitten auf Ihre Branche.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-node reveal delay-1">
+                            <div class="node-circle">02</div>
+                            <div class="node-content">
+                                <h3>Sie schauen sich alles in Ruhe an</h3>
+                                <p>Ohne Verpflichtung. Sie sehen konkret, wie Ihre neue Seite aussehen kann – in Ihrem eigenen Tempo.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-node reveal delay-2">
+                            <div class="node-circle">03</div>
+                            <div class="node-content">
+                                <h3>Sie entscheiden</h3>
+                                <p>Gefällt es Ihnen, gehen wir live. Wenn nicht, entstehen keine Kosten. Kein Druck, keine Tricks.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="haus-card reveal delay-1">
-                        <div class="advantage-icon">⚡</div>
-                        <h3>WhatsApp & Call Integration</h3>
-                        <p>Hürdenlose Kommunikation sorgt für eine signifikant höhere Antwortrate Ihrer Interessenten.</p>
-                    </div>
-                    <div class="haus-card reveal delay-2">
-                        <div class="advantage-icon">📱</div>
-                        <h3>Mobile First Ansatz</h3>
-                        <p>Perfekte Darstellung auf allen Geräten. Über 80% Ihrer Kunden erreichen Sie heute am Smartphone.</p>
-                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                    <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">👉 Demo kostenlos anfordern</button>
                 </div>
             </div>
         </section>
 
-        <!-- Block 4: Workflow Section (The Haus Method) -->
-        <section id="workflow" class="pains-section" style="background-color: var(--clr-bg); border-top: 1px solid #111;">
+        <!-- BLOCK 4: BENEFITS — FIX 5: 2×2 bento grid, SVG icons, FULL-WIDTH first card -->
+        <section id="solution" class="pains-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Der Prozess</h2>
-                    <p>Einfach. Transparent. Schnell.</p>
+                    <h2>Wir bauen Webseiten, die Besucher zu Anfragen machen</h2>
+                    <p>Jedes Element hat einen Zweck.</p>
                 </div>
-                <div class="grid grid-3">
-                    <div class="haus-card reveal">
-                        <div class="haus-number">01</div>
-                        <h3>Analyse</h3>
-                        <p>Wir prüfen Ihren Ist-Zustand, definieren die Zielgruppe und konzipieren die Struktur.</p>
+                <div class="bento-grid">
+                    <!-- wide card -->
+                    <div class="bento-card bento-wide reveal">
+                        <div class="bento-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Klarer Weg zur Anfrage</h3>
+                        <p>Jeder Abschnitt führt den Besucher zum nächsten Schritt – bis zur konkreten Kontaktaufnahme. Keine Ablenkung, keine offenen Fragen. Besucher werden geführt, nicht überfordert.</p>
                     </div>
-                    <div class="haus-card reveal delay-1">
-                        <div class="haus-number">02</div>
-                        <h3>Erstellung</h3>
-                        <p>Design, Copywriting und Programmierung greifen reibungslos ineinander für das perfekte Nutzererlebnis.</p>
+                    <!-- card 2 -->
+                    <div class="bento-card reveal delay-1">
+                        <div class="bento-icon">
+                            <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                        </div>
+                        <h3>Perfekt auf dem Smartphone</h3>
+                        <p>Über 80 % Ihrer Kunden kommen mobil – Ihre Seite funktioniert überall, von Anfang an.</p>
                     </div>
-                    <div class="haus-card reveal delay-2">
-                        <div class="haus-number">03</div>
-                        <h3>Anfragen erhalten</h3>
-                        <p>Go-Live in Rekordzeit. Ihre neue Landingpage generiert ab dem ersten Tag digital messbar Leads.</p>
+                    <!-- card 3 -->
+                    <div class="bento-card reveal delay-2">
+                        <div class="bento-icon">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        </div>
+                        <h3>Direkter Kontakt ohne Hürden</h3>
+                        <p>WhatsApp, Anruf oder Formular – sofort erreichbar. Kein unnötiger Aufwand für Ihre Kunden.</p>
+                    </div>
+                </div>
+                <div class="bento-grid" style="margin-top: 1.5rem;">
+                    <div class="bento-card bento-wide reveal delay-3">
+                        <div class="bento-icon">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3>Alles für Sie umgesetzt</h3>
+                        <p>Texte, Struktur, Technik – Sie müssen sich um nichts kümmern. Wir liefern fertig. Kein Briefing-Marathon, keine langen Abstimmungsrunden. Einfach entspannt zum Ergebnis.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Portfolio Section -->
+        <!-- BLOCK 5: COMPARISON TABLE — FIX 7 -->
+        <section id="comparison" class="comparison-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Growback vs. die Alternativen</h2>
+                    <p>Warum immer mehr lokale Unternehmen auf uns setzen.</p>
+                </div>
+                <div class="reveal" style="overflow-x: auto; max-width: 900px; margin: 0 auto;">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Merkmal</th>
+                                <th>Klassische Agentur</th>
+                                <th>Baukasten</th>
+                                <th class="col-growback">Growback ✓</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Umsetzung</td>
+                                <td>4–8 Wochen</td>
+                                <td>Wochen selbst</td>
+                                <td class="col-growback">48h Demo + schneller Launch</td>
+                            </tr>
+                            <tr>
+                                <td>Kosten</td>
+                                <td>3.000–10.000 €</td>
+                                <td>Viel Eigenzeit</td>
+                                <td class="col-growback">Ab 1.490 € oder 0 € Einstieg</td>
+                            </tr>
+                            <tr>
+                                <td>Ergebnis</td>
+                                <td>Schönes Design</td>
+                                <td>Bastelarbeit</td>
+                                <td class="col-growback">Mehr Anfragen</td>
+                            </tr>
+                            <tr>
+                                <td>Aufwand für Sie</td>
+                                <td>Hoch</td>
+                                <td>Sehr hoch</td>
+                                <td class="col-growback">Done-for-you</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCK 6: REFERENCES / PORTFOLIO -->
         <section id="portfolio" class="portfolio-section container">
             <div class="section-header reveal">
-                <h2>Referenzen & Exzellenz</h2>
-                <p>Einblicke in unsere Premium-Projekte.</p>
+                <h2>Beispiele moderner Webseiten für lokale Unternehmen</h2>
+                <p>So kann Ihr neuer Auftritt aussehen.</p>
             </div>
             <div class="grid grid-2">
-                <!-- Case 1: Barber -->
                 <a href="cases/barber/index.html" class="haus-portfolio-card reveal">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #0f172a, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #0f172a, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px;">
                         <div style="font-size: 3rem; margin-bottom: 1rem;">✂️</div>
                         <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Modern Barber Systems</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Vintage Style & Automated Booking Flow</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Friseur &amp; Barbershop – Buchung, Design, Mobile</div>
                     </div>
-                    <div class="haus-portfolio-overlay">
-                        <span class="view-project-btn">View Project</span>
-                    </div>
+                    <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
-
-                <!-- Case 2: Clinic -->
                 <a href="cases/clinic/index.html" class="haus-portfolio-card reveal delay-1">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #0f172a, #020617, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #0f172a, #020617, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px;">
                         <div style="font-size: 3rem; margin-bottom: 1rem;">🧬</div>
                         <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Aesthetik-Klinik Portal</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">High-End Visuals (Pistachio Mode)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Arztpraxis &amp; Klinik – Vertrauen &amp; Patientengewinnung</div>
                     </div>
-                    <div class="haus-portfolio-overlay">
-                        <span class="view-project-btn">View Project</span>
-                    </div>
+                    <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
-
-                <!-- Case 3: Wellness -->
                 <a href="cases/wellness/index.html" class="haus-portfolio-card reveal delay-2">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #1e293b, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #1e293b, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px;">
                         <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
                         <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Boutique Wellness Experience</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Zen-Minimalism lead generation</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Wellness &amp; Beauty – Buchungen &amp; Stammkunden</div>
                     </div>
-                    <div class="haus-portfolio-overlay">
-                        <span class="view-project-btn">View Project</span>
-                    </div>
+                    <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
-
-                <!-- Case 4: TCN Tennis -->
                 <a href="https://tcn-tennis.vercel.app/" target="_blank" class="haus-portfolio-card reveal delay-3">
-                    <img src="/Users/milankarpov/.gemini/antigravity/brain/07a6d9b1-01f3-41ac-9411-20c7a8e9543a/tcn_tennis_placeholder_png_1773422563760.png" alt="TCN Tennis Portal">
-                    <div class="haus-portfolio-overlay">
-                        <span class="view-project-btn">View Project</span>
-                    </div>
+                    <img src="/Users/milankarpov/.gemini/antigravity/brain/07a6d9b1-01f3-41ac-9411-20c7a8e9543a/tcn_tennis_placeholder_png_1773422563760.png" alt="TCN Tennis Portal" style="height: 350px; object-fit: cover;">
+                    <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
             </div>
         </section>
 
-        <!-- Block 6: Advantages Section -->
-        <section id="advantages" class="pains-section" style="border-top: 1px solid #111;">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Warum Unternehmen mit uns arbeiten</h2>
-                    <p>Qualität ohne Kompromisse.</p>
-                </div>
-                <div class="grid grid-2">
-                    <div class="haus-card reveal">
-                        <div class="advantage-icon">⚡</div>
-                        <h3>24-48h Delivery</h3>
-                        <p>Zeit ist Geld. Während andere noch planen, ist Ihre Seite bereits online und sammelt Leads.</p>
-                    </div>
-                    <div class="haus-card reveal delay-1">
-                        <div class="advantage-icon">📞</div>
-                        <h3>Lead-Focus</h3>
-                        <p>Wir bauen keine Webseiten, wir bauen Maschinen für Ihren Vertriebserfolg.</p>
-                    </div>
-                    <div class="haus-card reveal delay-2">
-                        <div class="advantage-icon">💰</div>
-                        <h3>Klarer Fixpreis</h3>
-                        <p>Keine versteckten Kosten. Preissicherheit ab der ersten Sekunde der Zusammenarbeit.</p>
-                    </div>
-                    <div class="haus-card reveal delay-3">
-                        <div class="advantage-icon">📱</div>
-                        <h3>High-End Technik</h3>
-                        <p>Obsidian Style mit flüssigen 60 FPS Animationen für den besten ersten Eindruck.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Block 7: Offer Section -->
+        <!-- BLOCK 7: PRICING — FIX 8: aligned CTAs at bottom -->
         <section id="pricing" class="pricing-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>Ihre neue Seite zur Kundengewinnung</h2>
+                    <h2>Eine Investition, die sich rechnet</h2>
                     <p>Wählen Sie das Modell, das zu Ihrer Liquidität passt.</p>
                 </div>
-                <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
-                    <!-- Option 1: One-off -->
+                <div class="grid grid-2" style="max-width: 900px; margin: 0 auto; align-items: stretch;">
                     <div class="pricing-card tilt-card reveal">
                         <div class="card-inner">
-                            <h3>Landingpage</h3>
-                            <div class="price">1.490 € <span style="font-size: 1rem; color: var(--clr-text-muted);">Einmalig</span></div>
+                            <h3>Einmalige Umsetzung</h3>
+                            <div class="price">Ab 1.490 € <span style="font-size: 1rem; color: var(--clr-text-muted);">Einmalig</span></div>
                             <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">Ideal für schnelle Ergebnisse und eigene Hostings.</p>
                             <ul class="features">
-                                <li>Custom Design &amp; Copywriting</li>
-                                <li>Mobile Optimierung</li>
-                                <li>WhatsApp / Call Integration</li>
-                                <li>Übergabe & Source Code inkl.</li>
+                                <li>Komplett erstellt</li>
+                                <li>Übergabe möglich</li>
+                                <li>Ideal für Eigenbetrieb</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Kostenlose Analyse</button>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">👉 Demo kostenlos anfordern</button>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
-                    <!-- Option 2: Subscription -->
                     <div class="pricing-card tilt-card reveal delay-1">
                         <div class="card-inner">
-                            <h3>0€ Setup</h3>
-                            <div class="price">199 € <span style="font-size: 1rem; color: var(--clr-text-muted);">/ Monat</span></div>
+                            <h3>Partner-Modell</h3>
+                            <div class="price">0 € Setup <span style="font-size: 1rem; color: var(--clr-text-muted);">+ ab 199 €/Monat</span></div>
                             <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">Wir bauen, hosten und warten alles für Sie.</p>
                             <ul class="features">
-                                <li><strong>Komplette Erstellung inklusive</strong></li>
-                                <li>Premium Hosting &amp; Wartung</li>
-                                <li>Inhaltliche Anpassungen inklusive</li>
-                                <li>Live-Support via WhatsApp</li>
+                                <li><strong>Erstellung inklusive</strong></li>
+                                <li>Hosting &amp; Wartung</li>
+                                <li>Laufende Anpassungen</li>
+                                <li>Support via WhatsApp</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Kostenlose Analyse</button>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">👉 Demo kostenlos anfordern</button>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                 </div>
+                <p class="pricing-note reveal">💡 Ein neuer Kunde kann die Investition bereits decken.</p>
             </div>
         </section>
 
-        <!-- Block 8: Demo-Offer -->
-        <section id="demo" class="container reveal">
-            <div class="demo-offer-box">
-                <h2>Kostenlose Webseiten-Analyse</h2>
-                <p class="subtext" style="max-width: 800px; margin: 2rem auto;">Wir zeigen Ihnen in einem 15-minütigen Video-Call genau auf, warum Ihre aktuelle Webseite keine Kunden bringt und wie wir das in Rekordzeit lösen.</p>
-                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Termin vereinbaren</button>
-            </div>
-        </section>
-
-        <!-- Block 9: FAQ -->
+        <!-- BLOCK 8: FAQ — FIX 9: independent toggle per item -->
         <section id="faq" class="faq-section container">
             <div class="section-header reveal">
-                <h2>Häufig gestellte Fragen</h2>
+                <h2>Häufige Fragen</h2>
             </div>
             <div class="faq-container">
                 <div class="faq-item reveal">
                     <button class="faq-question">Wie schnell ist die Seite online? <span class="faq-icon"></span></button>
                     <div class="faq-answer">
-                        <p>In der Regel ist Ihr neuer Internetauftritt innerhalb von 24 bis 48 Stunden nach Bereitstellung der Basis-Informationen live.</p>
+                        <p>In der Regel innerhalb weniger Tage nach Abstimmung – bei einfacheren Projekten auch schneller.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
-                    <button class="faq-question">Brauche ich eigene Inhalte oder Texte? <span class="faq-icon"></span></button>
+                    <button class="faq-question">Muss ich Inhalte liefern? <span class="faq-icon"></span></button>
                     <div class="faq-answer">
-                        <p>Nein. Unser Team übernimmt das komplette Copywriting basierend auf einem kurzen Briefing-Gespräch mit Ihnen.</p>
+                        <p>Nein. Wir übernehmen Texte und Struktur komplett – basierend auf einem kurzen Gespräch mit Ihnen.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
-                    <button class="faq-question">Was kostet die Erstellung genau? <span class="faq-icon"></span></button>
+                    <button class="faq-question">Was passiert nach der Demo? <span class="faq-icon"></span></button>
                     <div class="faq-answer">
-                        <p>Wir arbeiten mit fairen Fixpreisen. Entweder einmalig 1.490 € oder in unserem Partner-Modell für 199 € pro Monat ohne Setup-Kosten.</p>
+                        <p>Sie entscheiden frei, ob wir die Seite finalisieren. Keine Verpflichtung, kein Druck.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Gibt es versteckte Kosten? <span class="faq-icon"></span></button>
+                    <div class="faq-answer">
+                        <p>Nein. Klare Preise ohne Überraschungen – alles wird vorab besprochen und schriftlich festgehalten.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Wem gehört die Webseite? <span class="faq-icon"></span></button>
+                    <div class="faq-answer">
+                        <p>Beim Kaufmodell vollständig Ihnen – inklusive Quellcode und aller Dateien.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Block 10: Final CTA -->
+        <!-- BLOCK 9: FINAL CTA -->
         <section id="contact" class="cta-section container reveal">
             <div class="cta-box glass-card" style="background: var(--clr-bg); border-color: var(--clr-primary);">
-                <h2 style="font-size: 3rem; font-weight: 300;">Bereit für mehr Kundenanfragen?</h2>
-                <p style="margin-bottom: 2rem; color: var(--clr-text-muted);">Hinterlassen Sie Ihre E-Mail und wir melden uns innerhalb von 2 Stunden.</p>
-                <div class="input-group">
+                <h2 style="font-size: 2.8rem; font-weight: 300;">Sehen Sie Ihre neue Webseite,<br>bevor Sie entscheiden.</h2>
+                <p style="margin-bottom: 1rem; color: var(--clr-text-muted); max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 1rem;">Wir erstellen Ihnen eine kostenlose Demo-Version – unverbindlich.</p>
+                <div class="input-group" style="justify-content: center; flex-direction: column; align-items: center; gap: 1rem; margin-top: 2rem;">
                     <input type="email" id="email-optin" class="glow-input" placeholder="Ihre E-Mail Adresse" required style="max-width: 500px;">
                     <label for="email-optin" class="sr-only">E-Mail Adresse</label>
-                    <button class="btn btn-primary" style="padding: 1.5rem 3rem; font-size: 1.2rem;">Jetzt Analyse anfordern</button>
+                    <button class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">👉 Kostenlose Demo-Webseite anfordern</button>
+                    <button class="btn-ghost-wa" onclick="window.open('https://wa.me/4915XXXXXXXX','_blank')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.742-.525-5.287-1.432l-.38-.224-3.763.896.934-3.666-.247-.392A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        Persönlich via WhatsApp kontaktieren
+                    </button>
                 </div>
             </div>
         </section>
@@ -338,11 +430,11 @@
             <div class="footer-links">
                 <a href="/impressum.html">Impressum</a>
                 <a href="/datenschutz.html">Datenschutz</a>
+                <a href="#contact">Kontakt</a>
             </div>
         </div>
     </footer>
 
-    <!-- Main JS -->
     <script src="js/main.js"></script>
 </body>
 

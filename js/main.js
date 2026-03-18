@@ -145,22 +145,15 @@ function initMobileMenu() {
     });
 }
 
-/* --- 6. FAQ Accordion --- */
+/* --- 6. FAQ Accordion (independent toggle per item) --- */
 function initFAQAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
-    
+
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            // Close all others
-            faqItems.forEach(i => i.classList.remove('active'));
-            
-            // Toggle current
-            if (!isActive) {
-                item.classList.add('active');
-            }
+            // Toggle only this item — others stay as they are
+            item.classList.toggle('active');
         });
     });
 }
