@@ -2149,3 +2149,87 @@ h3 {
     font-size: clamp(2.6rem, 10vw, 3.8rem);
   }
 }
+
+/* =====================================================
+   SMOOTH SECTION TRANSITIONS
+   Each section fades in from the previous section's
+   background colour over a 100px gradient cap.
+   Page order:  hero(#000) › pains(#0a0a08) ›
+   demo(#050504) › solution(#0a0a08) › comparison(#050504) ›
+   advantages(#050504) › portfolio(#0a0a08) ›
+   pricing(#0a0a08) › faq(#050504) › contact(#0a0a08)
+   ===================================================== */
+
+/* hero → pains */
+#pains {
+  background: linear-gradient(to bottom,
+    #000000 0%,
+    #0a0a08 100px,
+    #0a0a08 100%
+  );
+}
+
+/* pains → demo */
+#demo-mechanism {
+  background: linear-gradient(to bottom,
+    #0a0a08 0%,
+    #050504 100px,
+    #050504 100%
+  );
+}
+
+/* demo → solution */
+#solution {
+  background: linear-gradient(to bottom,
+    #050504 0%,
+    #0a0a08 100px,
+    #0a0a08 100%
+  );
+}
+
+/* solution → comparison (override .comparison-section too) */
+#comparison,
+.comparison-section {
+  background: linear-gradient(to bottom,
+    #0a0a08 0%,
+    #050504 100px,
+    #050504 100%
+  ) !important;
+}
+
+/* comparison → advantages (same colour — keep flat) */
+#advantages {
+  background: #050504;
+}
+
+/* advantages → portfolio */
+#portfolio {
+  background: linear-gradient(to bottom,
+    #050504 0%,
+    #0a0a08 100px,
+    #0a0a08 100%
+  );
+}
+
+/* portfolio → pricing (same colour — keep flat) */
+#pricing {
+  background: #0a0a08;
+}
+
+/* pricing → faq */
+#faq {
+  background: linear-gradient(to bottom,
+    #0a0a08 0%,
+    #050504 100px,
+    #050504 100%
+  );
+}
+
+/* faq → contact */
+#contact {
+  background: linear-gradient(to bottom,
+    #050504 0%,
+    #0a0a08 100px,
+    #0a0a08 100%
+  );
+}
