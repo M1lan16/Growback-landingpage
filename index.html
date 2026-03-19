@@ -7,7 +7,7 @@
     <title>Growback | Mehr Kundenanfragen für lokale Unternehmen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
@@ -85,13 +85,13 @@
                     <h1>Ein digitaler Auftritt, der Ihre Kunden überzeugt –<br><span class="highlight">in 48 Stunden startklar.</span></h1>
                     <p class="subtext">Wir erstellen moderne Webseiten für lokale Unternehmen – die Vertrauen schaffen und Besucher zu echten Anfragen machen.</p>
                     <ul class="hero-benefits">
-                        <li>✔ Alles aus einer Hand – Texte, Design &amp; Technik</li>
-                        <li>✔ Perfekt für Smartphone &amp; ersten Eindruck</li>
-                        <li>✔ In 2–3 Tagen online</li>
-                        <li>✔ Kostenloser Demo-Entwurf vorab</li>
+                        <li>Alles aus einer Hand – Texte, Design &amp; Technik</li>
+                        <li>Perfekt für Smartphone &amp; ersten Eindruck</li>
+                        <li>In 2–3 Tagen online</li>
+                        <li>Kostenloser Demo-Entwurf vorab</li>
                     </ul>
                     <div class="hero-actions-col">
-                        <button class="btn btn-primary" id="hero-cta-primary" onclick="document.getElementById('demo-mechanism').scrollIntoView({behavior:'smooth'})">👉 Kostenlose Demo-Webseite ansehen</button>
+                        <button class="btn btn-primary" id="hero-cta-primary" onclick="document.getElementById('demo-mechanism').scrollIntoView({behavior:'smooth'})">Kostenlose Demo-Webseite anfragen</button>
                         <button class="btn-ghost-wa" onclick="window.open('https://wa.me/4915XXXXXXXX','_blank')">
                             <!-- WhatsApp icon -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.742-.525-5.287-1.432l-.38-.224-3.763.896.934-3.666-.247-.392A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -103,6 +103,8 @@
                     <div class="liquid-sphere"></div>
                 </div>
             </div>
+            <!-- Gold horizon glow -->
+            <div class="glow-horizon" aria-hidden="true"></div>
             <!-- Trust Bar -->
             <div class="trust-bar">
                 <div class="ticker-wrap">
@@ -126,25 +128,32 @@
         <section id="pains" class="pains-section">
             <div class="container">
                 <div class="section-header reveal">
+                    <span class="eyebrow">Das Problem</span>
                     <h2>Warum Ihre aktuelle Webseite Kunden kostet</h2>
                     <p>Die meisten Kunden informieren sich heute online – bevor sie anrufen. Wenn Ihre Webseite nicht überzeugt:</p>
                 </div>
                 <div class="liquid-glass-grid">
                     <!-- Card 1: full-width top -->
                     <div class="lg-card reveal">
-                        <span class="pain-icon">❌</span>
+                        <div class="pain-icon-svg" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
                         <h3>Kunden verlieren Vertrauen und gehen zur Konkurrenz</h3>
                         <p>Wer online nicht überzeugt, verliert den potenziellen Kunden, bevor er überhaupt angerufen hat. Ein schlechter erster Eindruck ist in Sekunden gemacht.</p>
                     </div>
                     <!-- Card 2 -->
                     <div class="lg-card reveal delay-1">
-                        <span class="pain-icon">❌</span>
+                        <div class="pain-icon-svg" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
                         <h3>Ihre Seite funktioniert nicht auf dem Smartphone</h3>
                         <p>Über 80 % Ihrer Besucher kommen mobil. Eine veraltete oder schlecht skalierte Seite kostet täglich bares Geld.</p>
                     </div>
                     <!-- Card 3 -->
                     <div class="lg-card reveal delay-2">
-                        <span class="pain-icon">❌</span>
+                        <div class="pain-icon-svg" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
                         <h3>Besucher kommen – aber niemand meldet sich</h3>
                         <p>Ohne klaren Weg zur Anfrage verlassen sich Besucher nicht weiter – und Sie wissen nicht einmal, dass sie da waren.</p>
                     </div>
@@ -156,6 +165,7 @@
         <section id="demo-mechanism" class="pains-section demo-mechanism-section">
             <div class="container">
                 <div class="section-header reveal">
+                    <span class="eyebrow">Unser Prozess</span>
                     <h2>Sehen Sie Ihre neue Webseite, bevor Sie entscheiden</h2>
                     <p>Wir erstellen eine kostenlose Demo-Version für Ihr Unternehmen – basierend auf Ihrem aktuellen Auftritt.</p>
                 </div>
@@ -186,7 +196,7 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                    <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">👉 Demo kostenlos anfordern</button>
+                    <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demo kostenlos anfordern</button>
                 </div>
             </div>
         </section>
@@ -195,6 +205,7 @@
         <section id="solution" class="pains-section">
             <div class="container">
                 <div class="section-header reveal">
+                    <span class="eyebrow">Leistungen</span>
                     <h2>Wir bauen Webseiten, die Besucher zu Anfragen machen</h2>
                     <p>Jedes Element hat einen Zweck.</p>
                 </div>
@@ -240,6 +251,7 @@
         <section id="comparison" class="comparison-section">
             <div class="container">
                 <div class="section-header reveal">
+                    <span class="eyebrow">Vergleich</span>
                     <h2>Growback vs. die Alternativen</h2>
                     <p>Warum immer mehr lokale Unternehmen auf uns setzen.</p>
                 </div>
@@ -284,39 +296,114 @@
             </div>
         </section>
 
-        <!-- BLOCK 6: REFERENCES / PORTFOLIO -->
+        <!-- BLOCK 6: VORTEILE — Glassmorphism Bento Grid -->
+        <section id="advantages" class="advantages-section">
+            <div class="advantages-glow-bleed" aria-hidden="true"></div>
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="eyebrow">Vorteile</span>
+                    <h2>Warum lokale Unternehmen Growback wählen</h2>
+                </div>
+                <div class="vorteile-bento">
+
+                    <!-- Card 1: Large (2-col) — Blitzschnell -->
+                    <div class="vb-card vb-large reveal">
+                        <div>
+                            <div class="vb-eyebrow">Unser Versprechen</div>
+                            <h3 class="vb-title"><em class="vb-accent">Blitzschnell</em>: Live in 24–48h</h3>
+                            <p class="vb-desc">Kein wochenlanger Briefing-Marathon. Wir liefern Ihre Webseite fertig und online — in weniger als zwei Tagen.</p>
+                        </div>
+                        <div class="vb-timer-bar">
+                            <div class="vb-timer-track">
+                                <div class="vb-timer-fill"></div>
+                            </div>
+                            <div class="vb-timer-labels">
+                                <span>Briefing</span>
+                                <span>Demo</span>
+                                <span class="vb-label-accent">Live ✓</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Small — Mobile First -->
+                    <div class="vb-card vb-small reveal delay-1">
+                        <div class="vb-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="7" y="2" width="10" height="20" rx="2"/>
+                                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            </svg>
+                        </div>
+                        <h3 class="vb-title">Mobile<br>First</h3>
+                        <p class="vb-desc">Perfekt auf jedem Gerät — von Anfang an für mobile Besucher gebaut.</p>
+                    </div>
+
+                    <!-- Card 3: Small — DSGVO -->
+                    <div class="vb-card vb-small reveal delay-2">
+                        <div class="vb-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <polyline points="9 12 11 14 15 10"/>
+                            </svg>
+                        </div>
+                        <h3 class="vb-title">DSGVO<br>Konform</h3>
+                        <p class="vb-desc">Rechtlich abgesichert. Datenschutz aus Deutschland.</p>
+                    </div>
+
+                    <!-- Card 4: Medium (2-col) — Fixpreis-Garantie -->
+                    <div class="vb-card vb-medium reveal delay-3">
+                        <div class="vb-price-block">
+                            <span class="vb-price-label">Einmalpreis ab</span>
+                            <div class="vb-price-number">1.490 €</div>
+                            <span class="vb-price-sub">Keine versteckten Folgekosten</span>
+                        </div>
+                        <div class="vb-price-text">
+                            <h3 class="vb-title">Fixpreis-<em class="vb-accent">Garantie</em></h3>
+                            <p class="vb-desc">Was wir vereinbaren, das gilt. Keine Überraschungsrechnungen. Ihr Budget bleibt Ihr Budget — egal wie viele Abstimmungsrunden es braucht.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCK 7: REFERENCES / PORTFOLIO -->
         <section id="portfolio" class="portfolio-section container">
             <div class="section-header reveal">
+                <span class="eyebrow">Portfolio</span>
                 <h2>Beispiele moderner Webseiten für lokale Unternehmen</h2>
                 <p>So kann Ihr neuer Auftritt aussehen.</p>
             </div>
             <div class="grid grid-2">
-                <a href="cases/barber/index.html" class="haus-portfolio-card reveal">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #0f172a, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px;">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">✂️</div>
-                        <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Modern Barber Systems</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Friseur &amp; Barbershop – Buchung, Design, Mobile</div>
+                <a href="cases/barber/index.html" class="haus-portfolio-card reveal" style="cursor:pointer;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #100800, #1a1000, rgba(255, 170, 0, 0.07)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px; gap: 0.5rem;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,170,0,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.5rem;"><path d="M6 3L6 21M6 3C6 3 10 5 12 3C14 1 18 3 18 3L18 18C18 18 14 16 12 18C10 20 6 18 6 18"/></svg>
+                        <div style="font-size: 1.25rem; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif;">Modern Barber Systems</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Friseur &amp; Barbershop – Buchung, Design, Mobile</div>
                     </div>
                     <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
-                <a href="cases/clinic/index.html" class="haus-portfolio-card reveal delay-1">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #0f172a, #020617, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px;">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🧬</div>
-                        <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Aesthetik-Klinik Portal</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Arztpraxis &amp; Klinik – Vertrauen &amp; Patientengewinnung</div>
+                <a href="cases/clinic/index.html" class="haus-portfolio-card reveal delay-1" style="cursor:pointer;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #050a10, #0a1520, rgba(255, 170, 0, 0.04)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px; gap: 0.5rem;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,170,0,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.5rem;"><path d="M12 2L12 22M2 12L22 12"/><circle cx="12" cy="12" r="9"/></svg>
+                        <div style="font-size: 1.25rem; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif;">Aesthetik-Klinik Portal</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Arztpraxis &amp; Klinik – Vertrauen &amp; Patientengewinnung</div>
                     </div>
                     <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
-                <a href="cases/wellness/index.html" class="haus-portfolio-card reveal delay-2">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #020617, #1e293b, rgba(0, 242, 255, 0.05)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px;">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
-                        <div style="font-size: 1.5rem; font-weight: 600; color: #fff;">Boutique Wellness Experience</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--clr-text-muted);">Wellness &amp; Beauty – Buchungen &amp; Stammkunden</div>
+                <a href="cases/wellness/index.html" class="haus-portfolio-card reveal delay-2" style="cursor:pointer;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #0a0810, #120f1a, rgba(255, 170, 0, 0.04)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px; gap: 0.5rem;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,170,0,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.5rem;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        <div style="font-size: 1.25rem; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif;">Boutique Wellness Experience</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Wellness &amp; Beauty – Buchungen &amp; Stammkunden</div>
                     </div>
                     <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
-                <a href="https://tcn-tennis.vercel.app/" target="_blank" class="haus-portfolio-card reveal delay-3">
-                    <img src="/Users/milankarpov/.gemini/antigravity/brain/07a6d9b1-01f3-41ac-9411-20c7a8e9543a/tcn_tennis_placeholder_png_1773422563760.png" alt="TCN Tennis Portal" style="height: 350px; object-fit: cover;">
+                <a href="https://tcn-tennis.vercel.app/" target="_blank" class="haus-portfolio-card reveal delay-3" style="cursor:pointer;">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #040a04, #0a1408, rgba(255, 170, 0, 0.04)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px; gap: 0.5rem;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,170,0,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 2C12 2 6 8 6 12S12 22 12 22"/><path d="M12 2C12 2 18 8 18 12S12 22 12 22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                        <div style="font-size: 1.25rem; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif;">TCN Tennis Portal</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Tennis-Verein – Mitglieder &amp; Events</div>
+                    </div>
                     <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
             </div>
@@ -326,6 +413,7 @@
         <section id="pricing" class="pricing-section">
             <div class="container">
                 <div class="section-header reveal">
+                    <span class="eyebrow">Preise</span>
                     <h2>Eine Investition, die sich rechnet</h2>
                     <p>Wählen Sie das Modell, das zu Ihrer Liquidität passt.</p>
                 </div>
@@ -340,14 +428,14 @@
                                 <li>Übergabe möglich</li>
                                 <li>Ideal für Eigenbetrieb</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">👉 Demo kostenlos anfordern</button>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demo kostenlos anfordern</button>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                     <div class="pricing-card tilt-card reveal delay-1">
                         <div class="card-inner">
                             <h3>Partner-Modell</h3>
-                            <div class="price">0 € Setup <span style="font-size: 1rem; color: var(--clr-text-muted);">+ ab 199 €/Monat</span></div>
+                            <div class="price"><span>0 € Setup</span><span style="font-size: 1rem; color: var(--clr-text-muted); white-space: nowrap;">+ ab 199&nbsp;€/Monat</span></div>
                             <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--clr-text-muted);">Wir bauen, hosten und warten alles für Sie.</p>
                             <ul class="features">
                                 <li><strong>Erstellung inklusive</strong></li>
@@ -355,18 +443,19 @@
                                 <li>Laufende Anpassungen</li>
                                 <li>Support via WhatsApp</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">👉 Demo kostenlos anfordern</button>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demo kostenlos anfordern</button>
                         </div>
                         <div class="glow-effect"></div>
                     </div>
                 </div>
-                <p class="pricing-note reveal">💡 Ein neuer Kunde kann die Investition bereits decken.</p>
+                <p class="pricing-note reveal">Ein neuer Kunde kann die Investition bereits decken.</p>
             </div>
         </section>
 
         <!-- BLOCK 8: FAQ — FIX 9: independent toggle per item -->
         <section id="faq" class="faq-section container">
             <div class="section-header reveal">
+                <span class="eyebrow">FAQ</span>
                 <h2>Häufige Fragen</h2>
             </div>
             <div class="faq-container">
@@ -405,13 +494,14 @@
 
         <!-- BLOCK 9: FINAL CTA -->
         <section id="contact" class="cta-section container reveal">
-            <div class="cta-box glass-card" style="background: var(--clr-bg); border-color: var(--clr-primary);">
-                <h2 style="font-size: 2.8rem; font-weight: 300;">Sehen Sie Ihre neue Webseite,<br>bevor Sie entscheiden.</h2>
+            <div class="cta-box glass-card" style="background: rgba(255,170,0,0.03); border-color: rgba(255,170,0,0.3);">
+                <span class="eyebrow">Kostenlos starten</span>
+                <h2 style="font-size: 2.8rem; font-weight: 700;">Sehen Sie Ihre neue Webseite,<br>bevor Sie entscheiden.</h2>
                 <p style="margin-bottom: 1rem; color: var(--clr-text-muted); max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 1rem;">Wir erstellen Ihnen eine kostenlose Demo-Version – unverbindlich.</p>
                 <div class="input-group" style="justify-content: center; flex-direction: column; align-items: center; gap: 1rem; margin-top: 2rem;">
                     <input type="email" id="email-optin" class="glow-input" placeholder="Ihre E-Mail Adresse" required style="max-width: 500px;">
                     <label for="email-optin" class="sr-only">E-Mail Adresse</label>
-                    <button class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">👉 Kostenlose Demo-Webseite anfordern</button>
+                    <button class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Kostenlose Demo-Webseite anfordern</button>
                     <button class="btn-ghost-wa" onclick="window.open('https://wa.me/4915XXXXXXXX','_blank')">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.742-.525-5.287-1.432l-.38-.224-3.763.896.934-3.666-.247-.392A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                         Persönlich via WhatsApp kontaktieren

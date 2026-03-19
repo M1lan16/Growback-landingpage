@@ -145,15 +145,43 @@ function initMobileMenu() {
     });
 }
 
-/* --- 6. FAQ Accordion (independent toggle per item) --- */
+/* --- 6. FAQ Accordion — smooth open/close, one item at a time --- */
 function initFAQAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        // Set explicit initial height for smooth transition baseline
+        answer.style.maxHeight = '0px';
+        answer.style.overflow = 'hidden';
+        answer.style.transition = 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease';
+
         question.addEventListener('click', () => {
-            // Toggle only this item — others stay as they are
-            item.classList.toggle('active');
+            const isActive = item.classList.contains('active');
+
+            // Close all items
+            faqItems.forEach(i => {
+                if (i !== item) {
+                    i.classList.remove('active');
+                    const a = i.querySelector('.faq-answer');
+                    a.style.maxHeight = '0px';
+                    a.style.paddingBottom = '0';
+                }
+            });
+
+            // Toggle clicked item
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.maxHeight = '0px';
+                answer.style.paddingBottom = '0';
+            } else {
+                item.classList.add('active');
+                // Use scrollHeight for accurate measurement
+                answer.style.maxHeight = answer.scrollHeight + 48 + 'px';
+                answer.style.paddingBottom = '2rem';
+            }
         });
     });
 }
