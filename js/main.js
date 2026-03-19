@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAudioFeedback();
     initMobileMenu();
     initFAQAccordion();
+    initProcessGlowLine();
 });
 
 /* --- 1. Scroll Reveal (Intersection Observer) --- */
@@ -145,7 +146,7 @@ function initMobileMenu() {
     });
 }
 
-/* --- 6. FAQ Accordion — smooth open/close, one item at a time --- */
+/* --- 6. FAQ Accordion — clean open/close toggle --- */
 function initFAQAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
 
@@ -153,37 +154,70 @@ function initFAQAccordion() {
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
 
-        // Set explicit initial height for smooth transition baseline
-        answer.style.maxHeight = '0px';
-        answer.style.overflow = 'hidden';
-        answer.style.transition = 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease';
+        if (!question || !answer) return;
 
         question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
+            const isOpen = item.classList.contains('open');
 
-            // Close all items
-            faqItems.forEach(i => {
-                if (i !== item) {
-                    i.classList.remove('active');
-                    const a = i.querySelector('.faq-answer');
-                    a.style.maxHeight = '0px';
-                    a.style.paddingBottom = '0';
+            // Close all other open items
+            faqItems.forEach(other => {
+                if (other !== item) {
+                    other.classList.remove('open');
+                    const otherAnswer = other.querySelector('.faq-answer');
+                    const otherBtn = other.querySelector('.faq-question');
+                    if (otherAnswer) otherAnswer.classList.remove('open');
+                    if (otherAnswer) otherAnswer.setAttribute('aria-hidden', 'true');
+                    if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
                 }
             });
 
-            // Toggle clicked item
-            if (isActive) {
-                item.classList.remove('active');
-                answer.style.maxHeight = '0px';
-                answer.style.paddingBottom = '0';
+            // Toggle the clicked item
+            if (isOpen) {
+                item.classList.remove('open');
+                answer.classList.remove('open');
+                answer.setAttribute('aria-hidden', 'true');
+                question.setAttribute('aria-expanded', 'false');
             } else {
-                item.classList.add('active');
-                // Use scrollHeight for accurate measurement
-                answer.style.maxHeight = answer.scrollHeight + 48 + 'px';
-                answer.style.paddingBottom = '2rem';
+                item.classList.add('open');
+                answer.classList.add('open');
+                answer.setAttribute('aria-hidden', 'false');
+                question.setAttribute('aria-expanded', 'true');
             }
         });
     });
+}
+
+/* --- 7. Process Section — Mobile Scroll Glow Line --- */
+function initProcessGlowLine() {
+    const steps = document.querySelector('#demo-mechanism .timeline-steps');
+    if (!steps) return;
+
+    function isMobile() {
+        return window.innerWidth < 768;
+    }
+
+    function updateGlow() {
+        if (!isMobile()) {
+            steps.style.removeProperty('--glow-pos');
+            return;
+        }
+
+        const rect = steps.getBoundingClientRect();
+        const sectionHeight = rect.height;
+
+        if (sectionHeight === 0) return;
+
+        // How far the viewport center has moved through the section
+        const viewportCenter = window.innerHeight / 2;
+        const relativePos = viewportCenter - rect.top;
+        const progress = Math.min(Math.max(relativePos / sectionHeight, 0), 1);
+
+        steps.style.setProperty('--glow-pos', `${progress * 100}%`);
+    }
+
+    window.addEventListener('scroll', updateGlow, { passive: true });
+    window.addEventListener('resize', updateGlow, { passive: true });
+    updateGlow();
 }
 
 

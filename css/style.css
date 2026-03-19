@@ -963,7 +963,11 @@ section {
     text-align: left;
   }
   .hero-visual {
-    display: none; /* hide sphere on mobile to keep hero compact */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 32px;
   }
 }
 
@@ -2232,4 +2236,206 @@ h3 {
     #0a0a08 100px,
     #0a0a08 100%
   );
+}
+
+/* =====================================================
+   MOBILE FIXES — V5
+   ===================================================== */
+
+/* ── FIX 1: Hero sphere on mobile — 200px, centered below CTA ── */
+@media (max-width: 768px) {
+  .hero-visual {
+    margin-top: 32px;
+  }
+
+  .hero-visual .liquid-sphere {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* ── FIX 2: Process section — mobile vertical glow line ── */
+@media (max-width: 767px) {
+  .timeline-wrapper {
+    position: relative;
+  }
+
+  /* Vertical beam track */
+  .timeline-steps {
+    position: relative;
+  }
+
+  .timeline-steps::before {
+    content: '';
+    position: absolute;
+    left: 27px; /* aligns with center of 56px node-circle */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 170, 0, 0.08) 10%,
+      rgba(255, 170, 0, 0.08) 90%,
+      transparent 100%
+    );
+    border-radius: 2px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Moving glow bead — driven by --glow-pos CSS custom property (set via JS) */
+  .timeline-steps::after {
+    content: '';
+    position: absolute;
+    left: 23px;
+    width: 10px;
+    height: 80px;
+    top: calc(var(--glow-pos, 0%) - 40px);
+    background: radial-gradient(ellipse 5px 40px at center, rgba(255, 170, 0, 0.75) 0%, transparent 100%);
+    filter: blur(3px);
+    z-index: 0;
+    pointer-events: none;
+    transition: top 0.08s linear;
+  }
+
+  /* Keep node-circle above the line */
+  .node-circle {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  /* Layout: icon left, text right */
+  .timeline-node {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .node-circle {
+    margin-bottom: 0;
+  }
+
+  .node-content {
+    flex: 1;
+  }
+}
+
+/* ── FIX 3: Vorteile — replace cyan with gold ── */
+.vb-card {
+  box-shadow: inset 10px 10px 20px rgba(255, 170, 0, 0.01);
+}
+
+.vb-card:hover {
+  border-color: rgba(245, 166, 35, 0.35);
+  box-shadow:
+    inset 10px 10px 20px rgba(255, 170, 0, 0.02),
+    0 0 28px rgba(245, 166, 35, 0.2),
+    0 10px 36px rgba(0, 0, 0, 0.45);
+  transform: translateY(-5px);
+}
+
+.vb-eyebrow {
+  color: rgba(255, 170, 0, 0.65);
+}
+
+.vb-icon {
+  background: rgba(255, 170, 0, 0.06);
+  border: 1px solid rgba(255, 170, 0, 0.18);
+}
+
+.vb-icon svg {
+  stroke: rgba(255, 170, 0, 0.75);
+}
+
+/* Progress bar: pure gold gradient, no cyan */
+.vb-timer-fill {
+  background: linear-gradient(90deg, rgba(255, 140, 0, 0.6), rgba(255, 185, 0, 0.95));
+}
+
+/* ── FIX 4: FAQ Accordion — complete rewrite ── */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: var(--font-main);
+  text-align: left;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  gap: 1rem;
+}
+
+.faq-question:hover {
+  color: var(--clr-primary);
+}
+
+.faq-question span:first-child {
+  flex: 1;
+}
+
+.faq-icon {
+  width: auto;
+  height: auto;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--clr-primary);
+  line-height: 1;
+  transition: transform 0.35s ease;
+  flex-shrink: 0;
+  display: inline-block;
+  /* remove any pseudo-element interference */
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  display: none;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.35s ease;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.faq-answer.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.faq-answer p {
+  padding-bottom: 20px;
+}
+
+/* Mobile FAQ readability */
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 16px;
+    padding: 18px 0;
+  }
 }
