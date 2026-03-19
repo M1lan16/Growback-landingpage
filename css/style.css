@@ -2201,26 +2201,22 @@ h3 {
   ) !important;
 }
 
-/* comparison → advantages (same colour — keep flat) */
+/* comparison → advantages: wave divider handles transition */
 #advantages {
   background: #050504;
 }
 
-/* advantages → portfolio */
+/* advantages → portfolio: wave divider handles transition */
 #portfolio {
-  background: linear-gradient(to bottom,
-    #050504 0%,
-    #0a0a08 100px,
-    #0a0a08 100%
-  );
+  background: #0a0a08;
 }
 
-/* portfolio → pricing (same colour — keep flat) */
+/* portfolio → pricing: gold line divider handles transition */
 #pricing {
   background: #0a0a08;
 }
 
-/* pricing → faq */
+/* pricing → faq: wave divider handles transition */
 #faq {
   background: linear-gradient(to bottom,
     #0a0a08 0%,

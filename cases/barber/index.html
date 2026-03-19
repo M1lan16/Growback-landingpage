@@ -1,679 +1,1138 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barber Case | Vintage Premium</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --clr-bg: #0a0a0a;
-            --clr-surface: #121212;
-            --clr-accent: #d4af37;
-            /* Gold */
-            --clr-text: #e0e0e0;
-            --clr-text-muted: #888888;
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Inter', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Barber — München</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
-        /* Grainy Texture Overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("https://www.transparenttextures.com/patterns/stardust.png");
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 1000;
-        }
+  <style>
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* ─── ROOT TOKENS ────────────────────────────────────────── */
+    :root {
+      --bg:          #0a0a0a;
+      --surface:     #111111;
+      --surface2:    #141414;
+      --text:        #ffffff;
+      --muted:       #888888;
+      --subtle:      #666666;
+      --dim:         #444444;
+      --border:      rgba(255,255,255,0.08);
+      --border-hov:  rgba(255,255,255,0.16);
+      --serif:       'Cormorant Garamond', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+      --max:         1200px;
+    }
 
-        body {
-            background-color: var(--clr-bg);
-            color: var(--clr-text);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* ─── BASE ───────────────────────────────────────────────── */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: var(--font-serif);
-            color: var(--clr-accent);
-            letter-spacing: -0.02em;
-        }
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
 
-        /* Sticky Back Button */
-        .sticky-back {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 100;
-        }
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      font-family: var(--sans);
+      font-weight: 400;
+    }
 
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--clr-accent);
-            text-decoration: none;
-            padding: 0.75rem 1.25rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-        }
+    section { padding: 120px 0; }
 
-        .btn-back:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(-5px);
-        }
+    /* ─── SCROLL REVEAL ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-d1 { transition-delay: 0.10s; }
+    .reveal-d2 { transition-delay: 0.20s; }
+    .reveal-d3 { transition-delay: 0.30s; }
+    .reveal-d4 { transition-delay: 0.40s; }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 1rem;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('http://googleusercontent.com/image_collection/image_retrieval/14959426094353394497_0') center/cover no-repeat;
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 1. NAV                                                     */
+    /* ─────────────────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 22px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--border);
+    }
 
-        .hero-content {
-            max-width: 800px;
-        }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
 
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            line-height: 0.9;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--clr-text-muted);
-            margin-bottom: 3rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
+    .nav-cta {
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      padding: 10px 24px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: transparent;
+      color: #fff;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-cta:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: #fff;
+    }
 
-        .btn-primary {
-            background: var(--clr-accent);
-            color: var(--clr-bg);
-            border: none;
-            padding: 1.25rem 3rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: var(--font-sans);
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 2. HERO                                                    */
+    /* ─────────────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0;
+      overflow: hidden;
+    }
 
-        .btn-primary:hover {
-            background: #e0e0e0;
-            transform: scale(1.05);
-        }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('Barber Hero.png') center center / cover no-repeat;
+    }
 
-        /* Service Section */
-        .section {
-            padding: 10rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.38) 0%,
+        rgba(0,0,0,0.52) 55%,
+        rgba(0,0,0,0.82) 100%
+      );
+    }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 6rem;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 40px;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+    }
 
-        .section-header h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+    }
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 4rem;
-        }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(52px, 8.5vw, 92px);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 22px;
+    }
 
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 1.5rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.58);
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 44px;
+      font-weight: 300;
+    }
 
-        .menu-item:hover {
-            opacity: 0.7;
-        }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-        .menu-info h4 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
+    /* ── Shared button styles ── */
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: #fff;
+      color: #0a0a0a;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      border: 1px solid #fff;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.86; }
 
-        .menu-info p {
-            font-size: 0.9rem;
-            color: var(--clr-text-muted);
-        }
+    .btn-secondary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: transparent;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.38);
+      font-weight: 400;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
 
-        .price {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            color: var(--clr-accent);
-        }
+    /* Hero stat bar */
+    .hero-stats {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .hero-stats-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.05em;
+      padding: 0 16px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 2px;
+      letter-spacing: 0;
+    }
 
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 3. ABOUT                                                   */
+    /* ─────────────────────────────────────────────────────────── */
+    #about { padding-bottom: 0; }
 
-        .barber-card {
-            background: var(--clr-surface);
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
 
-        .barber-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-10px);
-        }
+    .about-heading {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.8vw, 60px);
+      font-weight: 300;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 40px;
+    }
 
-        .barber-img {
-            width: 15rem;
-            height: 15rem;
-            background: #222;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-serif);
-            font-style: italic;
-            color: #444;
-            font-size: 2rem;
-            filter: grayscale(1);
-            transition: filter 0.5s ease;
-        }
+    .about-stats {
+      display: flex;
+      gap: 48px;
+    }
 
-        .barber-card:hover .barber-img {
-            filter: grayscale(0);
-        }
+    .about-stat {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
 
-        .barber-card h3 {
-            margin-bottom: 0.5rem;
-        }
+    .about-stat .num {
+      font-family: var(--serif);
+      font-size: 50px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
 
-        .barber-card span {
-            color: var(--clr-text-muted);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-        }
+    .about-stat .desc {
+      font-size: 13px;
+      color: var(--subtle);
+      letter-spacing: 0.04em;
+    }
 
-        /* Booking Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            display: none;
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+    .about-body { padding-top: 8px; }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+    .about-body p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
 
-        .modal-content {
-            background: var(--clr-surface);
-            width: 100%;
-            max-width: 600px;
-            padding: 4rem;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .about-image {
+      width: 100%;
+      height: 500px;
+      background: linear-gradient(160deg, #161616 0%, #1b1b1b 40%, #0e0e0e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 55%, rgba(255,255,255,0.025) 0%, transparent 55%),
+        radial-gradient(ellipse at 72% 18%, rgba(255,255,255,0.015) 0%, transparent 45%);
+    }
 
-        .modal-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: none;
-            border: none;
-            color: var(--clr-accent);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 4. BARBERS                                                 */
+    /* ─────────────────────────────────────────────────────────── */
+    #barbers {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
 
-        .booking-step {
-            display: none;
-        }
+    .section-header { margin-bottom: 56px; }
+    .section-header .label { margin-bottom: 16px; }
+    .section-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 300;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
 
-        .booking-step.active {
-            display: block;
-            animation: fadeIn 0.5s forwards;
-        }
+    .barbers-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
+    .barber-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .barber-card:hover { border-color: var(--border-hov); }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .barber-portrait {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(160deg, #1c1c1c 0%, #131313 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .barber-portrait::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+    }
 
-        .modal-header {
-            margin-bottom: 3rem;
-            text-align: center;
-        }
+    .barber-info {
+      padding: 24px 28px 30px;
+    }
+    .barber-name {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    .barber-specialty {
+      font-size: 13px;
+      color: var(--subtle);
+      letter-spacing: 0.03em;
+    }
 
-        .modal-header span {
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--clr-text-muted);
-            margin-bottom: 1rem;
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 5. LEISTUNGEN / TABS                                       */
+    /* ─────────────────────────────────────────────────────────── */
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .modal-header h3 {
-            font-size: 2.5rem;
-        }
+    .tab-pill {
+      padding: 14px 30px;
+      font-size: 13px;
+      letter-spacing: 0.07em;
+      background: transparent;
+      border: none;
+      color: var(--subtle);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-pill.active {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+    .tab-pill:hover:not(.active) { color: rgba(255,255,255,0.7); }
 
-        .options-list {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
+    .tab-panel { display: none; }
+    .tab-panel.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
 
-        .option-btn {
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--clr-text);
-            padding: 1.5rem;
-            text-align: left;
-            cursor: pointer;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            width: 100%;
-            transition: all 0.3s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .tab-service-name {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+    .tab-price {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 24px;
+    }
+    .tab-desc {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+    .tab-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, #141414, #1c1c1c);
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .tab-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.025) 0%, transparent 65%);
+    }
 
-        .option-btn:hover {
-            border-color: var(--clr-accent);
-            background: rgba(255, 255, 255, 0.05);
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 6. REVIEWS                                                 */
+    /* ─────────────────────────────────────────────────────────── */
+    #reviews {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
 
-        .option-btn .tag {
-            font-size: 0.8rem;
-            color: var(--clr-text-muted);
-            text-transform: uppercase;
-        }
+    .reviews-track-wrap {
+      overflow: hidden;
+      margin-top: 56px;
+      position: relative;
+    }
+    .reviews-track-wrap::before,
+    .reviews-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .reviews-track-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--surface), transparent);
+    }
+    .reviews-track-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--surface), transparent);
+    }
 
-        .input-group {
-            margin-bottom: 2rem;
-        }
+    .reviews-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: scroll-left 30s linear infinite;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 1rem;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--clr-text-muted);
-        }
+    @keyframes scroll-left {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
 
-        .input-group input {
-            width: 100%;
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--clr-accent);
-            padding: 1rem;
-            font-family: var(--font-sans);
-        }
+    .review-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 36px 40px;
+      width: 380px;
+      flex-shrink: 0;
+      transition: border-color 0.3s;
+    }
+    .review-card:hover { border-color: var(--border-hov); }
 
-        .success-screen {
-            text-align: center;
-        }
+    .review-stars {
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    .review-text {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 24px;
+      font-style: italic;
+      font-family: var(--serif);
+    }
+    .review-author {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
 
-        .success-screen h3 {
-            margin-bottom: 1.5rem;
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 7. PRICING                                                 */
+    /* ─────────────────────────────────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
 
-        .success-screen p {
-            color: var(--clr-text-muted);
-        }
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s;
+    }
+    .price-card:hover { border-color: var(--border-hov); }
 
-        footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--clr-text-muted);
-            font-size: 0.9rem;
-        }
+    .price-label-sm {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 24px;
+    }
+    .price-name {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .price-amount {
+      font-family: var(--serif);
+      font-size: 58px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-from {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 28px;
+    }
+    .price-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+      flex: 1;
+      margin-bottom: 36px;
+    }
 
-        footer p {
-            margin-bottom: 1rem;
-        }
+    /* ─────────────────────────────────────────────────────────── */
+    /* 8. BOOKING CTA                                             */
+    /* ─────────────────────────────────────────────────────────── */
+    #booking {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #booking::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 22% 50%, rgba(255,255,255,0.022) 0%, transparent 58%),
+        radial-gradient(ellipse at 78% 30%, rgba(255,255,255,0.018) 0%, transparent 48%);
+      pointer-events: none;
+    }
 
-        footer span {
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--clr-accent);
-        }
-    </style>
+    .booking-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .booking-h2 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .booking-sub {
+      font-size: 17px;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 44px;
+    }
+    .booking-tel {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--subtle);
+    }
+    .booking-tel a {
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .booking-tel a:hover { color: #fff; }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* 9. FOOTER                                                  */
+    /* ─────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 72px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--subtle);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a,
+    .footer-col p {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+      transition: color 0.2s;
+      line-height: 1.7;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+
+    .footer-hours {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--dim);
+    }
+    .footer-bottom a {
+      color: var(--subtle);
+      transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* RESPONSIVE                                                 */
+    /* ─────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      section { padding: 80px 0; }
+      .container { padding: 0 24px; }
+      #nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+
+      .hero-content { padding: 0 24px; }
+      .hero-stats-inner {
+        padding: 0 24px;
+        flex-direction: column;
+      }
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 14px 0;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .stat-item:last-child { border-bottom: none; }
+      .stat-item strong { display: inline; font-size: 20px; margin-bottom: 0; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-image { height: 280px; }
+
+      .barbers-row { grid-template-columns: 1fr 1fr; }
+
+      .tab-panel.active { grid-template-columns: 1fr; gap: 36px; }
+      .tab-image { order: -1; }
+
+      .pricing-grid { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-h1 { font-size: 44px; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary { text-align: center; }
+      .about-stats { flex-direction: column; gap: 28px; }
+      .barbers-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .tab-pill { padding: 12px 16px; font-size: 12px; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <div class="sticky-back">
-        <a href="../../index.html#portfolio" class="btn-back click-trigger">← Zurück zu <span
-                translate="no">GROWBACK</span></a>
+  <!-- ═══ 1. NAV ═══════════════════════════════════════════════ -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Modern Barber</a>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#barbers">Barbers</a></li>
+      <li><a href="#preise">Preise</a></li>
+    </ul>
+    <button class="nav-cta">Termin buchen</button>
+  </nav>
+
+  <!-- ═══ 2. HERO ══════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <p class="hero-label">München · Seit 2019</p>
+      <h1 class="hero-h1">Präzision trifft<br>Stil.</h1>
+      <p class="hero-sub">Mehr als ein Haarschnitt — ein Erlebnis, das bleibt.</p>
+      <div class="hero-buttons">
+        <a href="#booking" class="btn-primary">Termin buchen</a>
+        <a href="#barbers" class="btn-secondary">Unsere Arbeiten</a>
+      </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <p>Etabliert 2024</p>
-            <h1>The Art of Grooming</h1>
-            <p style="margin-top: 1rem;">Klassisches Handwerk trifft auf moderne Präzision.</p>
-            <button class="btn-primary click-trigger" id="openBooking">Termin buchen</button>
+    <div class="hero-stats">
+      <div class="hero-stats-inner">
+        <div class="stat-item">
+          <strong>4.9 ★</strong>
+          Google Bewertung
         </div>
-    </section>
-
-    <section class="section">
-        <div class="section-header">
-            <h2>Das Menü</h2>
-            <p>Zeitlose Schnitte und meisterhafte Rasur.</p>
+        <div class="stat-item">
+          <strong>200+</strong>
+          Stammkunden
         </div>
-        <div class="menu-grid">
-            <div class="menu-item click-trigger">
-                <div class="menu-info">
-                    <h4>The Royal Shave</h4>
-                    <p>Traditionelle Nassrasur per Hand inklusive heißer Kompressen.</p>
-                </div>
-                <div class="price">45€</div>
-            </div>
-            <div class="menu-item click-trigger">
-                <div class="menu-info">
-                    <h4>Gentleman's Cut</h4>
-                    <p>Präziser Haarschnitt inklusive Styling und Kopfmassage.</p>
-                </div>
-                <div class="price">55€</div>
-            </div>
-            <div class="menu-item click-trigger">
-                <div class="menu-info">
-                    <h4>Bartschnitt</h4>
-                    <p>Formgebung und Pflege inklusive erstklassiger Bartöle.</p>
-                </div>
-                <div class="price">30€</div>
-            </div>
-            <div class="menu-item click-trigger">
-                <div class="menu-info">
-                    <h4>Full Service</h4>
-                    <p>Haarschnitt und Rasur für das ultimative Erlebnis.</p>
-                </div>
-                <div class="price">85€</div>
-            </div>
+        <div class="stat-item">
+          <strong>15 min</strong>
+          vom Zentrum
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="section" style="background: #050505;">
-        <div class="section-header">
-            <h2>Unsere Meister</h2>
-            <p>Die Barbiere von <span translate="no">GROWBACK</span>.</p>
+  <!-- ═══ 3. ABOUT ═════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <h2 class="about-heading">Qualität ist unser<br>Handwerk</h2>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="num">5+</div>
+              <div class="desc">Jahre Erfahrung</div>
+            </div>
+            <div class="about-stat">
+              <div class="num">3</div>
+              <div class="desc">Meister-Barber</div>
+            </div>
+          </div>
         </div>
-        <div class="team-grid">
-            <div class="barber-card">
-                <div class="barber-img">H.</div>
-                <h3>Hendrik</h3>
-                <span>Master Barber</span>
-            </div>
-            <div class="barber-card">
-                <div class="barber-img">M.</div>
-                <h3>Markus</h3>
-                <span>Fade Specialist</span>
-            </div>
-            <div class="barber-card">
-                <div class="barber-img">L.</div>
-                <h3>Lukas</h3>
-                <span>Old School Expert</span>
-            </div>
+        <div class="about-body reveal reveal-d2">
+          <p>Wir glauben, dass ein guter Haarschnitt mehr ist als Handwerk — er ist Ausdruck von Persönlichkeit. Bei Modern Barber nehmen wir uns die Zeit, jeden Kunden individuell zu verstehen.</p>
+          <p>In unserem Studio verbinden sich klassische Barbier-Tradition mit modernem Anspruch. Jeder Schnitt wird mit Präzision, Geduld und echtem Interesse am Ergebnis ausgeführt.</p>
+          <a href="#leistungen" class="btn-secondary" style="display:inline-block;margin-top:8px;">Unsere Leistungen</a>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="about-image reveal"></div>
+  </section>
 
-    <!-- Tradition Section -->
-    <section class="section" style="background: var(--clr-bg); border-top: 1px solid rgba(255,255,255,0.05);">
-        <div class="container"
-            style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto;">
-            <div style="flex: 1; min-width: 300px;">
-                <h2 style="font-size: 3rem; margin-bottom: 2rem;">Die Tradition des Handwerks</h2>
-                <p style="font-size: 1.1rem; color: var(--clr-text-muted); margin-bottom: 2rem; line-height: 1.8;">
-                    Bei uns ist das Barbierhandwerk mehr als nur ein Beruf – es ist ein Erbe. Wir pflegen die
-                    traditionellen Methoden der klassischen Herrenpflege,
-                    von der präzisen Messerführung bis hin zu den wohltuenden Ritualen der heißen Kompressen. In einer
-                    schnelllebigen Welt bieten wir Ihnen einen Ort der Beständigkeit und Qualität.
-                </p>
-                <div
-                    style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; color: var(--clr-accent);">
-                    Echtes Handwerk für echte Männer.
-                </div>
-            </div>
-            <div style="flex: 1; min-width: 300px;">
-                <img src="http://googleusercontent.com/image_collection/image_retrieval/13583404552388749474_3"
-                    alt="Craftsmanship"
-                    style="width: 100%; height: 500px; object-fit: cover; border-radius: 4px; box-shadow: 20px 20px 0 var(--clr-surface);">
-            </div>
+  <!-- ═══ 4. BARBERS ═══════════════════════════════════════════ -->
+  <section id="barbers">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">01 · Unser Team</p>
+        <h2>Meet our Barbers</h2>
+      </div>
+      <div class="barbers-row">
+        <div class="barber-card reveal reveal-d1">
+          <div class="barber-portrait"></div>
+          <div class="barber-info">
+            <div class="barber-name">Marcus K.</div>
+            <div class="barber-specialty">Spezialist für Fades &amp; Übergänge</div>
+          </div>
         </div>
-    </section>
-
-    <!-- Ambiente Gallery -->
-    <section class="section" style="background: #050505;">
-        <div class="section-header">
-            <h2>Das Ambiente</h2>
-            <p>Ein Ort, der Geschichten erzählt.</p>
+        <div class="barber-card reveal reveal-d2">
+          <div class="barber-portrait"></div>
+          <div class="barber-info">
+            <div class="barber-name">Luca R.</div>
+            <div class="barber-specialty">Klassische Herrenschnitte &amp; Rasur</div>
+          </div>
         </div>
-        <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; padding: 0 1rem;">
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/14959426094353394497_0"
-                alt="Ambiente 1" style="width: 100%; height: 300px; object-fit: cover;">
-            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&q=80&w=800"
-                alt="Ambiente 2" style="width: 100%; height: 300px; object-fit: cover;">
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/13583404552388749474_3"
-                alt="Ambiente 3" style="width: 100%; height: 300px; object-fit: cover;">
-            <img src="https://images.unsplash.com/photo-1599351473299-d8395e69f1b2?auto=format&fit=crop&q=80&w=800"
-                alt="Ambiente 4" style="width: 100%; height: 300px; object-fit: cover;">
+        <div class="barber-card reveal reveal-d3">
+          <div class="barber-portrait"></div>
+          <div class="barber-info">
+            <div class="barber-name">David M.</div>
+            <div class="barber-specialty">Texturen &amp; moderne Styles</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>© 2024 <span translate="no">GROWBACK</span> Barber Concept</p>
-        <p>Herrenstraße 14, 80539 München</p>
-    </footer>
+  <!-- ═══ 5. LEISTUNGEN ════════════════════════════════════════ -->
+  <section id="leistungen">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">02 · Leistungen</p>
+        <h2>Treatments<br>Tailored to you</h2>
+      </div>
 
-    <!-- Multi-Step Booking Modal -->
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal-content">
-            <button class="modal-close click-trigger" id="closeModal">&times;</button>
+      <div class="tabs-nav reveal">
+        <button class="tab-pill active" data-tab="schnitte">01 Schnitte</button>
+        <button class="tab-pill" data-tab="bart">02 Bart</button>
+        <button class="tab-pill" data-tab="kombi">03 Kombi</button>
+      </div>
 
-            <!-- Step 1: Service -->
-            <div class="booking-step active" id="step-1">
-                <div class="modal-header">
-                    <span>Schritt 1/3</span>
-                    <h3>Der Service</h3>
-                </div>
-                <div class="options-list">
-                    <button class="option-btn click-trigger" onclick="nextStep(1, 'The Royal Shave')">
-                        The Royal Shave <span class="tag">45€</span>
-                    </button>
-                    <button class="option-btn click-trigger" onclick="nextStep(1, 'Gentleman\'s Cut')">
-                        Gentleman's Cut <span class="tag">55€</span>
-                    </button>
-                    <button class="option-btn click-trigger" onclick="nextStep(1, 'Bartschnitt')">
-                        Bartschnitt <span class="tag">30€</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Step 2: Barber -->
-            <div class="booking-step" id="step-2">
-                <div class="modal-header">
-                    <span>Schritt 2/3</span>
-                    <h3>Der Barbier</h3>
-                </div>
-                <div class="options-list">
-                    <button class="option-btn click-trigger" onclick="nextStep(2, 'Hendrik')">
-                        Hendrik <span class="tag">Master</span>
-                    </button>
-                    <button class="option-btn click-trigger" onclick="nextStep(2, 'Markus')">
-                        Markus <span class="tag">Fade</span>
-                    </button>
-                    <button class="option-btn click-trigger" onclick="nextStep(2, 'Lukas')">
-                        Lukas <span class="tag">Old School</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Step 3: Date/Time -->
-            <div class="booking-step" id="step-3">
-                <div class="modal-header">
-                    <span>Schritt 3/3</span>
-                    <h3>Termin wählen</h3>
-                </div>
-                <div class="input-group">
-                    <label>Datum</label>
-                    <input type="date" value="2024-03-20">
-                </div>
-                <div class="input-group">
-                    <label>Uhrzeit</label>
-                    <input type="time" value="14:00">
-                </div>
-                <button class="btn-primary click-trigger" style="width: 100%;" onclick="finishBooking()">Termin
-                    bestätigen</button>
-            </div>
-
-            <!-- Success Screen -->
-            <div class="booking-step" id="step-success">
-                <div class="success-screen">
-                    <div style="font-size: 4rem; margin-bottom: 2rem;">✓</div>
-                    <h3>Termin gebucht</h3>
-                    <p>Ihre Reservierung für <strong id="summary-service"></strong> bei <strong
-                            id="summary-barber"></strong> wurde erfolgreich bestätigt.</p>
-                </div>
-            </div>
+      <div class="tab-panel active" id="tab-schnitte">
+        <div class="tab-content">
+          <div class="tab-service-name">Der Classic Cut</div>
+          <div class="tab-price">Ab 35 €</div>
+          <p class="tab-desc">Unser Signature-Schnitt — sauber, zeitlos und auf dich zugeschnitten. Inklusive Wash, Schnitt und abschließendem Styling mit hochwertigen Produkten. Der perfekte Einstieg ins Modern Barber Erlebnis.</p>
+          <a href="#booking" class="btn-primary">Termin buchen</a>
         </div>
+        <div class="tab-image"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-bart">
+        <div class="tab-content">
+          <div class="tab-service-name">Bart &amp; Rasur</div>
+          <div class="tab-price">Ab 25 €</div>
+          <p class="tab-desc">Präzise Konturierung, klassische Nassrasur mit heißem Handtuch und pflegende Behandlung für ein gepflegtes Ergebnis. Dein Bart — dein Statement.</p>
+          <a href="#booking" class="btn-primary">Termin buchen</a>
+        </div>
+        <div class="tab-image"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-kombi">
+        <div class="tab-content">
+          <div class="tab-service-name">Kombi-Paket</div>
+          <div class="tab-price">Ab 55 €</div>
+          <p class="tab-desc">Das volle Modern Barber Erlebnis — Haarschnitt und Bartpflege in einer Session. Mehr Zeit für dich, mehr Aufmerksamkeit für Details, ein Ergebnis das überzeugt.</p>
+          <a href="#booking" class="btn-primary">Termin buchen</a>
+        </div>
+        <div class="tab-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. REVIEWS ═══════════════════════════════════════════ -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">03 · Bewertungen</p>
+        <h2>Was unsere Kunden sagen</h2>
+      </div>
     </div>
 
-    <script>
-        // Web Audio API Click Sound
-        let audioCtx = null;
-        function playClickSound() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.1);
-            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.1);
+    <div class="reviews-track-wrap">
+      <div class="reviews-track">
+        <!-- set 1 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Bester Barbershop in München. Habe nach Jahren endlich meinen Stamm-Barber gefunden."</p>
+          <div class="review-author">— Thomas B.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Das Ergebnis spricht für sich — präzise, sauber, professionell. Werde immer wiederkommen."</p>
+          <div class="review-author">— Kevin M.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Entspannte Atmosphäre, top Service und ein Ergebnis das sich sehen lässt. Absolute Empfehlung."</p>
+          <div class="review-author">— Stefan W.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Seit dem ersten Besuch komme ich regelmäßig. Kein anderer Laden mehr für mich."</p>
+          <div class="review-author">— Marco L.</div>
+        </div>
+        <!-- set 2 — mirror for seamless loop -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Bester Barbershop in München. Habe nach Jahren endlich meinen Stamm-Barber gefunden."</p>
+          <div class="review-author">— Thomas B.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Das Ergebnis spricht für sich — präzise, sauber, professionell. Werde immer wiederkommen."</p>
+          <div class="review-author">— Kevin M.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Entspannte Atmosphäre, top Service und ein Ergebnis das sich sehen lässt. Absolute Empfehlung."</p>
+          <div class="review-author">— Stefan W.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Seit dem ersten Besuch komme ich regelmäßig. Kein anderer Laden mehr für mich."</p>
+          <div class="review-author">— Marco L.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7. PRICING ═══════════════════════════════════════════ -->
+  <section id="preise">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">04 · Preise</p>
+        <h2>Einfache,<br>transparente Preise</h2>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card reveal reveal-d1">
+          <div class="price-label-sm">01 · Schnitt</div>
+          <div class="price-name">Classic Cut</div>
+          <div class="price-amount">35€</div>
+          <div class="price-from">ab / pro Schnitt</div>
+          <p class="price-desc">Haarschnitt inkl. Styling mit hochwertigen Produkten. Wash &amp; Dry inklusive.</p>
+          <a href="#booking" class="btn-secondary" style="display:inline-block;text-align:center;">Buchen</a>
+        </div>
+
+        <div class="price-card reveal reveal-d2">
+          <div class="price-label-sm">02 · Bart</div>
+          <div class="price-name">Bart &amp; Rasur</div>
+          <div class="price-amount">25€</div>
+          <div class="price-from">ab / pro Termin</div>
+          <p class="price-desc">Präzise Bartpflege, klassische Nassrasur, heißes Handtuch und Aftershave-Behandlung.</p>
+          <a href="#booking" class="btn-secondary" style="display:inline-block;text-align:center;">Buchen</a>
+        </div>
+
+        <div class="price-card reveal reveal-d3" style="border-color:rgba(255,255,255,0.14);">
+          <div class="price-label-sm">03 · Kombi</div>
+          <div class="price-name">Kombi-Paket</div>
+          <div class="price-amount">55€</div>
+          <div class="price-from">ab / das volle Paket</div>
+          <p class="price-desc">Cut + Bart in einer Session — das vollständige Modern Barber Erlebnis.</p>
+          <a href="#booking" class="btn-primary" style="display:inline-block;text-align:center;">Buchen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. BOOKING CTA ═══════════════════════════════════════ -->
+  <section id="booking">
+    <div class="container">
+      <div class="booking-inner reveal">
+        <h2 class="booking-h2">Bereit für deinen<br>nächsten Look?</h2>
+        <p class="booking-sub">Buche jetzt deinen Termin — online in unter 2 Minuten.</p>
+        <a href="#" class="btn-primary">Termin buchen</a>
+        <p class="booking-tel">Oder ruf uns an: <a href="tel:+498912345678">+49 89 123 456 78</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. FOOTER ════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Modern Barber</div>
+          <p class="footer-tagline">Präzision, Stil und Atmosphäre —<br>mitten in München.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#barbers">Team</a></li>
+            <li><a href="#preise">Preise</a></li>
+            <li><a href="#booking">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Adresse</h4>
+          <p>Maximilianstraße 12<br>80539 München<br>Deutschland</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Öffnungszeiten</h4>
+          <div class="footer-hours">
+            Mo – Sa&nbsp;&nbsp;10:00 – 19:00<br>
+            Sonntag&nbsp;&nbsp;Geschlossen
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Modern Barber Systems</p>
+        <p>Webseite erstellt von <a href="../../index.html">Growback</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav: frosted glass on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Scroll reveal via IntersectionObserver
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
         }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
 
-        document.querySelectorAll('.click-trigger').forEach(btn => {
-            btn.addEventListener('click', playClickSound);
-        });
+    // Tab switching
+    document.querySelectorAll('.tab-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        document.getElementById('tab-' + pill.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
 
-        // Booking Modal Logic
-        const modal = document.getElementById('bookingModal');
-        const openBtn = document.getElementById('openBooking');
-        const closeBtn = document.getElementById('closeModal');
-
-        let selection = { service: '', barber: '' };
-
-        openBtn.addEventListener('click', () => {
-            modal.classList.add('active');
-            resetSteps();
-        });
-
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        function nextStep(current, choice) {
-            if (current === 1) selection.service = choice;
-            if (current === 2) selection.barber = choice;
-
-            document.getElementById(`step-${current}`).classList.remove('active');
-            document.getElementById(`step-${current + 1}`).classList.add('active');
-        }
-
-        function finishBooking() {
-            document.getElementById('step-3').classList.remove('active');
-            document.getElementById('step-success').classList.add('active');
-            document.getElementById('summary-service').textContent = selection.service;
-            document.getElementById('summary-barber').textContent = selection.barber;
-
-            setTimeout(() => {
-                modal.classList.remove('active');
-            }, 5000);
-        }
-
-        function resetSteps() {
-            document.querySelectorAll('.booking-step').forEach(step => step.classList.remove('active'));
-            document.getElementById('step-1').classList.add('active');
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.classList.remove('active');
-            }
-        }
-    </script>
 </body>
-
 </html>

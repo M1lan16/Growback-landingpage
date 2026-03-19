@@ -296,6 +296,9 @@
             </div>
         </section>
 
+        <!-- Transition: Vergleich → Vorteile -->
+        <div style="position:relative;height:1px;background:linear-gradient(to right,transparent 0%,rgba(255,170,0,0.22) 30%,rgba(255,170,0,0.38) 50%,rgba(255,170,0,0.22) 70%,transparent 100%);"></div>
+
         <!-- BLOCK 6: VORTEILE — Glassmorphism Bento Grid -->
         <section id="advantages" class="advantages-section">
             <div class="advantages-glow-bleed" aria-hidden="true"></div>
@@ -366,6 +369,13 @@
             </div>
         </section>
 
+        <!-- Transition: Vorteile → Portfolio -->
+        <div style="height:70px;background:#050504;overflow:hidden;line-height:0;">
+            <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;">
+                <path d="M0,0 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#0a0a08"/>
+            </svg>
+        </div>
+
         <!-- BLOCK 7: REFERENCES / PORTFOLIO -->
         <section id="portfolio" class="portfolio-section container">
             <div class="section-header reveal">
@@ -399,15 +409,21 @@
                     <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
                 <a href="https://tcn-tennis.vercel.app/" target="_blank" class="haus-portfolio-card reveal delay-3" style="cursor:pointer;">
-                    <div class="placeholder-img" style="background: linear-gradient(135deg, #040a04, #0a1408, rgba(255, 170, 0, 0.04)); display:flex; align-items:center; justify-content:center; flex-direction: column; color:#94a3b8; height: 350px; gap: 0.5rem;">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,170,0,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 2C12 2 6 8 6 12S12 22 12 22"/><path d="M12 2C12 2 18 8 18 12S12 22 12 22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                        <div style="font-size: 1.25rem; font-weight: 600; color: #fff; font-family: 'Outfit', sans-serif;">TCN Tennis Portal</div>
-                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Tennis-Verein – Mitglieder &amp; Events</div>
+                    <div class="placeholder-img" style="height:350px;overflow:hidden;position:relative;background:#040a04;">
+                        <img src="Tennis Hero Block.png" alt="TCN Tennis Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+                        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 50%);pointer-events:none;"></div>
+                        <div style="position:absolute;bottom:20px;left:20px;right:20px;pointer-events:none;">
+                            <div style="font-size:1.15rem;font-weight:600;color:#fff;font-family:'Outfit',sans-serif;">TCN Tennis Portal</div>
+                            <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);margin-top:3px;">Tennis-Verein – Mitglieder &amp; Events</div>
+                        </div>
                     </div>
                     <div class="haus-portfolio-overlay"><span class="view-project-btn">Ansehen</span></div>
                 </a>
             </div>
         </section>
+
+        <!-- Transition: Portfolio → Preise -->
+        <div style="position:relative;height:1px;background:linear-gradient(to right,transparent 0%,rgba(255,170,0,0.22) 30%,rgba(255,170,0,0.38) 50%,rgba(255,170,0,0.22) 70%,transparent 100%);"></div>
 
         <!-- BLOCK 7: PRICING — FIX 8: aligned CTAs at bottom -->
         <section id="pricing" class="pricing-section">
@@ -451,6 +467,13 @@
                 <p class="pricing-note reveal">Ein neuer Kunde kann die Investition bereits decken.</p>
             </div>
         </section>
+
+        <!-- Transition: Preise → FAQ -->
+        <div style="height:70px;background:#0a0a08;overflow:hidden;line-height:0;">
+            <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;">
+                <path d="M0,50 C480,0 960,70 1440,20 L1440,70 L0,70 Z" fill="#050504"/>
+            </svg>
+        </div>
 
         <!-- BLOCK 8: FAQ — FIX 9: independent toggle per item -->
         <section id="faq" class="faq-section container">
