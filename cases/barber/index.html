@@ -151,7 +151,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('Barber Hero.png') center center / cover no-repeat;
+      background: url("Barber Hero.png") center center / cover no-repeat;
     }
 
     .hero-overlay {
@@ -338,7 +338,7 @@
     .about-image {
       width: 100%;
       height: 500px;
-      background: linear-gradient(160deg, #161616 0%, #1b1b1b 40%, #0e0e0e 100%);
+      background: url("Barber Close shot.png") center center / cover no-repeat;
       position: relative;
       overflow: hidden;
     }
@@ -346,9 +346,12 @@
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 25% 55%, rgba(255,255,255,0.025) 0%, transparent 55%),
-        radial-gradient(ellipse at 72% 18%, rgba(255,255,255,0.015) 0%, transparent 45%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.08) 40%,
+        rgba(0,0,0,0.38) 100%
+      );
     }
 
     /* ─────────────────────────────────────────────────────────── */
@@ -389,9 +392,15 @@
     .barber-portrait {
       width: 100%;
       aspect-ratio: 3 / 4;
-      background: linear-gradient(160deg, #1c1c1c 0%, #131313 100%);
       position: relative;
       overflow: hidden;
+    }
+    .barber-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
     .barber-portrait::before {
       content: '';
@@ -399,6 +408,7 @@
       bottom: 0; left: 0; right: 0;
       height: 40%;
       background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+      z-index: 1;
     }
 
     .barber-info {
@@ -802,9 +812,39 @@
       .footer-grid { grid-template-columns: 1fr; }
       .tab-pill { padding: 12px 16px; font-size: 12px; }
     }
+
+    /* ─── BACK BUTTON ────────────────────────────────────────── */
+    #back-to-growback {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1100;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-family: var(--sans);
+      letter-spacing: 0.05em;
+      padding: 10px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #back-to-growback:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.4);
+      transform: translateX(-2px);
+    }
   </style>
 </head>
 <body>
+
+  <a href="../../index.html" id="back-to-growback">← Zurück zu Growback</a>
 
   <!-- ═══ 1. NAV ═══════════════════════════════════════════════ -->
   <nav id="nav">
@@ -886,21 +926,21 @@
       </div>
       <div class="barbers-row">
         <div class="barber-card reveal reveal-d1">
-          <div class="barber-portrait"></div>
+          <div class="barber-portrait"><img src="Barber 1.png" alt="Marcus K. — Barber"></div>
           <div class="barber-info">
             <div class="barber-name">Marcus K.</div>
             <div class="barber-specialty">Spezialist für Fades &amp; Übergänge</div>
           </div>
         </div>
         <div class="barber-card reveal reveal-d2">
-          <div class="barber-portrait"></div>
+          <div class="barber-portrait"><img src="Barber 2.png" alt="Luca R. — Barber"></div>
           <div class="barber-info">
             <div class="barber-name">Luca R.</div>
             <div class="barber-specialty">Klassische Herrenschnitte &amp; Rasur</div>
           </div>
         </div>
         <div class="barber-card reveal reveal-d3">
-          <div class="barber-portrait"></div>
+          <div class="barber-portrait"><img src="Barber 3.png" alt="David M. — Barber"></div>
           <div class="barber-info">
             <div class="barber-name">David M.</div>
             <div class="barber-specialty">Texturen &amp; moderne Styles</div>

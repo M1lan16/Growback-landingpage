@@ -2435,3 +2435,48 @@ h3 {
     padding: 18px 0;
   }
 }
+
+/* =====================================================
+   V5 — SEAMLESS SECTION TRANSITIONS
+   Unify all dark shades to #080807 — no more hard cuts
+   ===================================================== */
+
+html { background-color: #080807; }
+body { background-color: #080807; }
+
+/* Override every section background to the same warm base */
+section,
+#pains,
+#demo-mechanism,
+#solution,
+#comparison,
+#portfolio,
+#advantages,
+#pricing,
+#faq,
+#contact,
+.comparison-section,
+.pains-section,
+.demo-mechanism-section,
+.advantages-section,
+.portfolio-section,
+.pricing-section,
+.faq-section,
+.cta-section {
+  background-color: #080807;
+}
+
+/* Contact premium section — override inline style block */
+#contact.contact-premium {
+  background: #080807 !important;
+}
+
+/* Ticker / trust bar — soften, same base so no cut */
+.trust-bar {
+  background: rgba(255, 255, 255, 0.015);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Comparison section — was #0e0e16 (blue-tinted), neutralise */
+.comparison-section { background: #080807 !important; }
