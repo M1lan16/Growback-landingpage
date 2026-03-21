@@ -377,11 +377,15 @@
 
 <body>
 
-    <!-- HEADER / NAV — FIX 1 -->
+    <!-- HEADER / NAV -->
     <header class="glass-header" id="main-header">
         <div class="container nav-wrapper">
+
+            <!-- Logo -->
             <a href="#" class="logo" translate="no">GROWBACK</a>
-            <nav class="main-nav">
+
+            <!-- Desktop nav links -->
+            <nav class="main-nav" aria-label="Hauptnavigation">
                 <ul class="nav-links">
                     <li><a href="#solution">Leistungen</a></li>
                     <li><a href="#pricing">Preise</a></li>
@@ -389,13 +393,46 @@
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-            <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" aria-label="Demo anfordern">Demo anfordern</button>
-            <button class="mobile-menu-toggle" aria-label="Menü umschalten">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Desktop CTA -->
+            <button class="btn btn-primary nav-cta"
+                    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+                    aria-label="Demo anfordern">
+                Demo anfordern
             </button>
+
+            <!-- Mobile hamburger -->
+            <button class="mobile-menu-toggle" id="hamburger-btn"
+                    aria-label="Menü öffnen" aria-expanded="false">
+                <svg class="hamburger-icon" viewBox="0 0 32 32"
+                     fill="none" stroke="currentColor"
+                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path class="hamburger-path-s"
+                          d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/>
+                    <path class="hamburger-path-mid" d="M7 16 27 16"/>
+                </svg>
+            </button>
+
         </div>
+
+        <!-- Mobile overlay (inside header so z-index stacks correctly) -->
+        <div class="mobile-nav-overlay" id="mobile-nav" aria-hidden="true">
+            <div class="mobile-nav-inner">
+                <nav class="mobile-nav-links">
+                    <a href="#solution"       class="mobile-nav-link">Leistungen</a>
+                    <a href="#pricing"        class="mobile-nav-link">Preise</a>
+                    <a href="#demo-mechanism" class="mobile-nav-link">Demo</a>
+                    <a href="#faq"            class="mobile-nav-link">FAQ</a>
+                </nav>
+                <div class="mobile-nav-footer">
+                    <button class="btn btn-primary mobile-cta"
+                            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                        Demo anfordern
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </header>
 
     <main>

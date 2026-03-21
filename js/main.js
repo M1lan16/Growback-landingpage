@@ -33,17 +33,13 @@ function initScrollReveal() {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // Header shrinking effect
+    // Frosted glass on scroll — class-based, no inline styles
     const header = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.padding = '0.5rem 0';
-            header.style.background = 'rgba(2, 6, 23, 0.9)';
-        } else {
-            header.style.padding = '1rem 0';
-            header.style.background = 'rgba(2, 6, 23, 0.7)';
-        }
-    }, { passive: true });
+    const onScroll = () => {
+        header.classList.toggle('nav-scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load in case page is already scrolled
 }
 
 /* --- 2. 3D Tilt & Glow Effect for Cards --- */
@@ -122,27 +118,41 @@ function initAudioFeedback() {
 
 /* --- 5. Mobile Menu Toggle --- */
 function initMobileMenu() {
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('.main-nav');
+    const btn     = document.getElementById('hamburger-btn');
+    const overlay = document.getElementById('mobile-nav');
 
-    if (!toggle || !nav) return;
+    if (!btn || !overlay) return;
 
-    toggle.addEventListener('click', () => {
-        // Toggle logic if we want an expanding menu
-        // For now, it simply shows it as block if requested
-        if (nav.style.display === 'flex') {
-            nav.style.display = 'none';
-        } else {
-            nav.style.display = 'flex';
-            nav.style.flexDirection = 'column';
-            nav.style.position = 'absolute';
-            nav.style.top = '100%';
-            nav.style.left = '0';
-            nav.style.width = '100%';
-            nav.style.background = 'rgba(2, 6, 23, 0.95)';
-            nav.style.padding = '2rem';
-            nav.style.alignItems = 'center';
-        }
+    function openMenu() {
+        btn.classList.add('open');
+        overlay.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Menü schließen');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        btn.classList.remove('open');
+        overlay.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Menü öffnen');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', () => {
+        btn.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    // Close when any mobile nav link is clicked
+    overlay.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(el => {
+        el.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && btn.classList.contains('open')) closeMenu();
     });
 }
 
