@@ -1174,5 +1174,32 @@
     });
   </script>
 
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href*="demo"], button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var label = btn.innerText || btn.textContent || 'unknown';
+          window.va('event', { name: 'cta_click', data: { label: label.trim().substring(0, 50) } });
+        });
+      });
+      var whatsappBtn = document.querySelector('a[href*="wa.me"], a[href*="whatsapp"]');
+      if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function() { window.va('event', { name: 'whatsapp_click' }); });
+      }
+      document.querySelectorAll('.faq-question, .faq-item button').forEach(function(item) {
+        item.addEventListener('click', function() {
+          var question = item.innerText || item.textContent || 'unknown';
+          window.va('event', { name: 'faq_opened', data: { question: question.trim().substring(0, 80) } });
+        });
+      });
+      var contactForm = document.querySelector('form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function() { window.va('event', { name: 'form_submitted' }); });
+      }
+    });
+  </script>
+
 </body>
 </html>
