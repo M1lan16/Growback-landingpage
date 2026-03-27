@@ -4,9 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growback | Mehr Kundenanfragen für lokale Unternehmen</title>
+    <title>Growback – Webdesign für lokale Unternehmen | 48h startklar</title>
+    <meta name="description" content="Growback erstellt moderne, conversion-optimierte Webseiten für lokale Unternehmen in Nürnberg und Bayern – in 48 Stunden online. Kostenlose Demo vorab. Kein Risiko.">
+    <meta name="keywords" content="Webdesign Nürnberg, Webseite erstellen Bayern, Webdesign lokale Unternehmen, Website Physiotherapie, Webseite Dachdecker, Webdesign günstig, Homepage erstellen lassen">
+    <meta name="author" content="Growback">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="b8e73ea9f69e8b72">
+    <link rel="canonical" href="https://growback.online/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://growback.online/">
+    <meta property="og:title" content="Growback – Webseiten die Kunden überzeugen">
+    <meta property="og:description" content="Moderne Webseiten für lokale Unternehmen – in 48 Stunden startklar. Kostenlose Demo vorab.">
+    <meta property="og:image" content="https://growback.online/og-image.jpg">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="Growback">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Growback – Webseiten die Kunden überzeugen">
+    <meta name="twitter:description" content="Moderne Webseiten für lokale Unternehmen – in 48 Stunden startklar.">
+    <meta name="twitter:image" content="https://growback.online/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -413,6 +441,69 @@
             .comparison-table th, .comparison-table td { padding: 0.75rem; font-size: 0.8rem; }
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://growback.online/#business",
+          "name": "Growback",
+          "description": "Webdesign-Agentur für lokale Unternehmen in Nürnberg und Bayern. Moderne, conversion-optimierte Webseiten in 48 Stunden.",
+          "url": "https://growback.online",
+          "email": "info@growback.online",
+          "telephone": "+4916092209851",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nürnberg",
+            "addressRegion": "Bayern",
+            "addressCountry": "DE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 49.4521,
+            "longitude": 11.0767
+          },
+          "areaServed": ["Nürnberg", "Fürth", "Erlangen", "Bayern", "Deutschland"],
+          "priceRange": "€€",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          },
+          "sameAs": ["https://growback.online"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://growback.online/#website",
+          "url": "https://growback.online",
+          "name": "Growback",
+          "description": "Webdesign für lokale Unternehmen",
+          "inLanguage": "de-DE",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://growback.online/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Webdesign für lokale Unternehmen",
+          "provider": { "@id": "https://growback.online/#business" },
+          "description": "Conversion-optimierte Webseiten für lokale Unternehmen – in 48 Stunden online.",
+          "areaServed": "Deutschland",
+          "offers": {
+            "@type": "Offer",
+            "price": "1490",
+            "priceCurrency": "EUR",
+            "description": "Einmalige Umsetzung ab 1.490 Euro"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -561,6 +652,7 @@
         </section>
 
         <!-- BLOCK 3: DEMO MECHANISM — FIX 4: Animated timeline -->
+        <span id="demo" style="position:absolute;visibility:hidden;"></span>
         <section id="demo-mechanism" class="pains-section demo-mechanism-section">
             <div class="container">
                 <div class="section-header reveal">
@@ -601,6 +693,7 @@
         </section>
 
         <!-- BLOCK 4: BENEFITS — FIX 5: 2×2 bento grid, SVG icons, FULL-WIDTH first card -->
+        <span id="leistungen" style="position:absolute;visibility:hidden;"></span>
         <section id="solution" class="pains-section">
             <div class="container">
                 <div class="section-header reveal">
@@ -785,7 +878,7 @@
             <div class="grid grid-2">
                 <a href="cases/barber/index.html" class="haus-portfolio-card reveal" style="cursor:pointer;">
                     <div class="placeholder-img" style="height:350px;overflow:hidden;position:relative;background:#100800;">
-                        <img src="cases/Barber Demo Hero.png" alt="Modern Barber Systems" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+                        <img src="cases/Barber Demo Hero.png" alt="Modern Barber Systems – Webseite erstellt von Growback" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
                         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 50%);pointer-events:none;"></div>
                         <div style="position:absolute;bottom:20px;left:20px;right:20px;pointer-events:none;">
                             <div style="font-size:1.15rem;font-weight:600;color:#fff;font-family:'Outfit',sans-serif;">Modern Barber München</div>
@@ -796,7 +889,7 @@
                 </a>
                 <a href="https://physiotherapie-demo.vercel.app" target="_blank" class="haus-portfolio-card reveal delay-1" style="cursor:pointer;">
                     <div class="placeholder-img" style="height:350px;overflow:hidden;position:relative;background:#050a10;">
-                        <img src="cases/Physio Demo Hero.png" alt="Aesthetik-Klinik Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+                        <img src="cases/Physio Demo Hero.png" alt="Aesthetik-Klinik Portal – Webseite erstellt von Growback" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
                         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 50%);pointer-events:none;"></div>
                         <div style="position:absolute;bottom:20px;left:20px;right:20px;pointer-events:none;">
                             <div style="font-size:1.15rem;font-weight:600;color:#fff;font-family:'Outfit',sans-serif;">Physiopraxis Bergmann</div>
@@ -815,7 +908,7 @@
                 </a>
                 <a href="https://tcn-tennis.vercel.app/" target="_blank" class="haus-portfolio-card reveal delay-3" style="cursor:pointer;">
                     <div class="placeholder-img" style="height:350px;overflow:hidden;position:relative;background:#040a04;">
-                        <img src="Tennis Hero Block.png" alt="TCN Tennis Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+                        <img src="Tennis Hero Block.png" alt="TCN Tennis Portal – Webseite erstellt von Growback" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
                         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 50%);pointer-events:none;"></div>
                         <div style="position:absolute;bottom:20px;left:20px;right:20px;pointer-events:none;">
                             <div style="font-size:1.15rem;font-weight:600;color:#fff;font-family:'Outfit',sans-serif;">TCN Tennis Portal</div>
@@ -831,6 +924,7 @@
         <div style="position:relative;height:1px;background:linear-gradient(to right,transparent 0%,rgba(255,170,0,0.22) 30%,rgba(255,170,0,0.38) 50%,rgba(255,170,0,0.22) 70%,transparent 100%);"></div>
 
         <!-- BLOCK 7: PRICING — FIX 8: aligned CTAs at bottom -->
+        <span id="preise" style="position:absolute;visibility:hidden;"></span>
         <section id="pricing" class="pricing-section">
             <div class="container">
                 <div class="section-header reveal">
@@ -1216,6 +1310,11 @@
                 <a href="datenschutz.html">Datenschutz</a>
                 <a href="#contact">Kontakt</a>
             </div>
+        </div>
+        <div class="container">
+            <address style="font-style:normal;color:#555;font-size:12px;margin-top:8px;">
+                Growback · Nürnberg, Bayern · <a href="mailto:info@growback.online" style="color:#555;">info@growback.online</a>
+            </address>
         </div>
     </footer>
 
