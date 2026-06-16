@@ -2573,6 +2573,99 @@ h3 {
 }
 
 /* =====================================================
+   POLISH — NEW SECTIONS (reviews, local, team)
+   ===================================================== */
+
+#reviews,
+#local,
+#team {
+  background-color: #080807;
+  padding: var(--spacing-xl) 1.5rem;
+}
+
+/* Review card — CSS class for hover consistency */
+.review-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 1.75rem;
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.review-card:hover {
+  border-color: rgba(255,170,0,0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(255,170,0,0.08);
+}
+
+/* Founder photo wrapper in team section */
+.founder-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Unify section headers in new blocks */
+#reviews .section-header,
+#local .section-header,
+#team .section-header {
+  margin-bottom: 2.5rem;
+}
+
+/* ── POLISH: Fix vb-card base inset (remove cyan tint) ── */
+.vb-card {
+  box-shadow: none;
+}
+
+.vb-card:hover {
+  box-shadow:
+    0 0 28px rgba(255, 170, 0, 0.12),
+    0 10px 36px rgba(0, 0, 0, 0.45);
+}
+
+/* ── POLISH: Section header h2 — slightly tighter on the new sections ── */
+#local h2,
+#team h2 {
+  font-size: clamp(1.8rem, 3vw + 0.5rem, 2.6rem);
+}
+
+/* ── POLISH: Reviews carousel outer — consistent with page max-width ── */
+.reviews-carousel-outer {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── POLISH: Map iframe border — gold glow on hover ── */
+#local iframe {
+  transition: filter 0.3s ease;
+}
+
+#local .reveal:hover iframe {
+  filter: brightness(1.0) saturate(0.9);
+}
+
+/* ── POLISH: Comparison table — no more hairline on every row ── */
+.comparison-table tbody tr:nth-child(odd) td {
+  background: rgba(255,255,255,0.015);
+}
+
+.comparison-table td {
+  border-bottom: none;
+}
+
+.comparison-table tbody tr:not(:last-child) td {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+/* =====================================================
    V5 — SEAMLESS SECTION TRANSITIONS
    Unify all dark shades to #080807 — no more hard cuts
    ===================================================== */
