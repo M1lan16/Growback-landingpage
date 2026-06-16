@@ -214,10 +214,9 @@ function initProcessGlowLine() {
 
         const rect = steps.getBoundingClientRect();
         const sectionHeight = rect.height;
-
         if (sectionHeight === 0) return;
 
-        // How far the viewport center has moved through the section
+        // Viewport center tracks through the section in real time
         const viewportCenter = window.innerHeight / 2;
         const relativePos = viewportCenter - rect.top;
         const progress = Math.min(Math.max(relativePos / sectionHeight, 0), 1);
@@ -225,9 +224,21 @@ function initProcessGlowLine() {
         steps.style.setProperty('--glow-pos', `${progress * 100}%`);
     }
 
-    window.addEventListener('scroll', updateGlow, { passive: true });
+    // rAF-throttled scroll: fires on every animation frame while scrolling
+    // so the glow follows the finger without any lag or snap-on-stop
+    let rafPending = false;
+    function onScroll() {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+            updateGlow();
+            rafPending = false;
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', updateGlow, { passive: true });
-    updateGlow();
+    updateGlow(); // initial position on load
 }
 
 

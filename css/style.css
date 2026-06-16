@@ -2428,7 +2428,7 @@ h3 {
     filter: blur(3px);
     z-index: 0;
     pointer-events: none;
-    transition: top 0.08s linear;
+    /* no transition — position updated live via rAF in JS */
   }
 
   /* Keep node-circle above the line */
@@ -2570,6 +2570,163 @@ h3 {
     font-size: 16px;
     padding: 18px 0;
   }
+}
+
+/* ── Section CTA Button ── */
+.section-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.section-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255,170,0,0.45);
+  border-radius: 8px;
+  padding: 0.75rem 1.75rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #F5A623;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.section-cta-btn:hover {
+  background: rgba(255,170,0,0.08);
+  border-color: #F5A623;
+  transform: translateY(-2px);
+}
+
+/* ── FOOTER — Mobile ── */
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 1.5rem;
+  }
+
+  .footer-links a {
+    font-size: 0.875rem;
+  }
+}
+
+/* ── COMPARISON TABLE — Mobile: Agentur vs. Growback only ── */
+@media (max-width: 640px) {
+  /* Hide: Merkmal (col 1) + Baukasten (col 3) */
+  .comparison-table th:nth-child(1),
+  .comparison-table td:nth-child(1),
+  .comparison-table th:nth-child(3),
+  .comparison-table td:nth-child(3) {
+    display: none;
+  }
+
+  /* Klassische Agentur — 50% */
+  .comparison-table th:nth-child(2),
+  .comparison-table td:nth-child(2) {
+    width: 50%;
+  }
+
+  /* Growback — 50%, keep gold left border */
+  .comparison-table td.col-growback,
+  .comparison-table th.col-growback {
+    width: 50%;
+    border-right: none;
+  }
+
+  .comparison-mobile-note {
+    display: block;
+  }
+}
+
+/* Hidden on desktop, shown on mobile */
+.comparison-mobile-note {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* =====================================================
+   PAIN CARDS — Horizontal Icon + Text Layout
+   ===================================================== */
+
+/* ── Pain Icon Grid — 3 cols, icon top, text below, no cards ── */
+.pain-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pain-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.pain-card-icon {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pain-card-icon::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,170,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pain-svg {
+  width: 96px;
+  height: 96px;
+  position: relative;
+  z-index: 1;
+}
+
+.pain-icon-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.pain-icon-text p {
+  color: rgba(255,255,255,0.58);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 24ch;
+}
+
+@media (max-width: 640px) {
+  .pain-icon-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .pain-icon-text p { max-width: none; }
 }
 
 /* =====================================================
